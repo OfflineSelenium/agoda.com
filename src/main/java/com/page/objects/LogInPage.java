@@ -48,6 +48,17 @@ public class LogInPage extends GeneralPage {
         return findElementByLocator("notification_sign_in").getText();
     }
 
+    public String signInNotificationTextEmail() {
+        return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_revEmail").getText();
+    }
+
+    public String signInNotificationTextPassword() {
+        return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvPassword").getText();
+    }
+
+    public String signInNotificationTextRequiredEmail() {
+        return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvEmail").getText();
+    }
 //    public MyBookingsPage logInPassed(String email, String password) {
 //        return enterEmail(email).enterPassword(password).clickSignInPassed();
 //    }
