@@ -8,8 +8,13 @@
         <classes>
             <class name="com.agoda.tests.LogInPageTest">
                 <methods>
-                    <include name="verifyLogInPassed"/>
-                    <include name="verifyLogInFailed"/>
+                    <!--<include name="verifyLogInPassed"/>-->
+                    <!--<include name="verifyLogInFailed"/>-->
+                    <!--<include name="verifyLogInFailedWithInvalidEmail"/>-->
+                    <!--<include name="verifyLogInFailedWithBlankPassword"/>-->
+                    <!--<include name="verifyLogInFailedWithInvalidPassword"/>-->
+                    <!--<include name="verifyLogInFailedWithoutEmailPassword"/>-->
+                    <include name="verifyLogInFailedWithEmailBlock"/>
                 </methods>
             </class>
         </classes>
