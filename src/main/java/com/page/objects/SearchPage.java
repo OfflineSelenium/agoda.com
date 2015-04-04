@@ -30,6 +30,15 @@ public class SearchPage extends GeneralPage {
     @FindBy(linkText = "Agoda price guarantee")
     private WebElement agodaPriceGuaranteeLink;
 
+    @FindBy(id = "CheckInDay")
+    private WebElement checkInDay;
+
+    @FindBy(id = "CheckInMonthYear")
+    private WebElement checkInMonthYear;
+
+    @FindBy(id = "NightCount")
+    private WebElement chooseNightCount;
+
     @FindBy(xpath = "//ul[@id='ui-id-1']/li[@class='ui-menu-promote ui-menu-item entry']")
     private WebElement firstItemInAutoComplete;
     @FindBy(xpath = "//div[@class='agoda-guarantee']/a")
@@ -74,6 +83,7 @@ public class SearchPage extends GeneralPage {
     }
 
     public SearchPage inputText(String text) {
+        searchInput.clear();
         searchInput.sendKeys(text);
         return this;
     }
@@ -152,4 +162,45 @@ public class SearchPage extends GeneralPage {
         Dimension originalSize = new Dimension(1382, 744);
         driver.manage().window().setSize(originalSize);
     }
+
+    public SearchResultsPage clickSearchButton() {
+        searchButton.click();
+        return webPageFactory.loadSearchResultsPage();
+    }
+
+    public SearchPage inputKey() {
+        searchInput.sendKeys(Keys.chord(Keys.CONTROL, "c"));
+        return webPageFactory.loadSearchPage();
+    }
+
+    public SearchResultsPage searchNonPrintingKey() {
+        searchButton.click();
+        return webPageFactory.loadSearchResultsPage();
+    }
+
+    public SearchPage chooseDay(String day){
+        checkInDay.sendKeys(day);
+        return this;
+    }
+
+    public SearchPage chooseMonthYear(String monthyear){
+        checkInMonthYear.sendKeys(monthyear);
+        return this;
+    }
+
+    public SearchPage chooseDataPicker(){
+        checkInDatePicker.click();
+        return this;
+    }
+
+    public SearchPage chooseNight(String night){
+        chooseNightCount.sendKeys(night);
+        return this;
+    }
+
+    public SearchPage chooseDatePickerCheckOut(){
+        checkOutDatePicker.click();
+        return this;
+    }
+
 }

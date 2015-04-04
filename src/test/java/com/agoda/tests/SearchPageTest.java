@@ -1,15 +1,22 @@
 package com.agoda.tests;
 
 import com.page.objects.SearchPage;
+import com.page.objects.SearchResultsPage;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.util.List;
 
 public class SearchPageTest extends BasePage {
 
     private SearchPage searchPage;
+    private SearchResultsPage searchResultsPage;
+    private WebDriver driver;
 
     private String SEARCH_QUERY_1;
 
@@ -96,4 +103,70 @@ public class SearchPageTest extends BasePage {
 //    public void checkResizeWindowReset() {
 //        searchPage.resizeWindowReset();
 //    }
+
+    @Test(description = "searchWrongData")
+    public void searchFail() {
+        searchPage.load();
+        searchPage.inputText("bong da tivi")
+                  .chooseDay("Thu 12")
+                  .chooseMonthYear("Feb, 2015")
+                  .chooseDataPicker()
+                  .chooseNight("3")
+                  .chooseDatePickerCheckOut();
+        searchResultsPage = searchPage.clickSearchButton();
+    }
+
+    @Test(description = "searchNonPrintingKey")
+    public void searchNonPrintingKey() {
+        searchPage.load();
+        searchPage.inputKey()
+                  .chooseDay("Thu 12")
+                  .chooseMonthYear("Feb, 2015")
+                  .chooseDataPicker()
+                  .chooseNight("3")
+                  .chooseDatePickerCheckOut();
+        searchResultsPage = searchPage.clickSearchButton();
+    }
+
+    @Test(description = "searchSpecialCharacters")
+    public void searchSpecialCharacters() {
+        searchPage.load();
+        searchPage.inputText("123@#$hanoi")
+                  .chooseDay("Thu 12")
+                  .chooseMonthYear("Feb, 2015")
+                  .chooseDataPicker()
+                  .chooseNight("3")
+                  .chooseDatePickerCheckOut();
+        searchResultsPage = searchPage.clickSearchButton();
+    }
+
+    private final String blueColor = "#0283df";
+
+    @Test(description = "searchValid", groups = "smoke")
+    public void searchValid() {
+        searchPage.load();
+        SearchResultsPage searchResultsPage = searchPage.inputText("ho chi minh")
+//        Actions builder = new Actions(driver);
+//        builder.sendKeys(Keys.ESCAPE);
+//        builder.build().perform();
+                .chooseDay("Thu 12")
+                .chooseMonthYear("Feb, 2015")
+                .chooseDataPicker()
+                .chooseNight("3")
+                .chooseDatePickerCheckOut()
+                .clickSearchButton();
+        searchResultsPage.isLoad();
+//        List<WebElement> list = driver.findElements(By.xpath("//ol[contains(@class,'result result-list text-result content-list isotope')]/li"));
+//        int count = 0;
+//        for (WebElement element : list) {
+//            count++;
+//        }
+//        System.out.println(count);
+        Assert.assertEquals(searchResultsPage.getColor(), blueColor);
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void aftermethod() {
+        webPageFactory.getDriver().close();
+    }
 }
