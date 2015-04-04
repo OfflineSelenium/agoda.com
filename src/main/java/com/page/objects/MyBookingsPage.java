@@ -23,7 +23,7 @@ public class MyBookingsPage extends GeneralPage {
         loadPage("/rewards/managebooking.html");
     }
 
-    public void isLoaded(){
+    public void isLoaded() {
         webPageFactory.checkWeAreOnTheRightPage("My Bookings");
     }
 

@@ -68,9 +68,11 @@ public class LogInPage extends GeneralPage {
     public String signInNotificationTextEmail() {
         return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_revEmail").getText();
     }
+
     public String signInNotificationTextPassword() {
         return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvPassword").getText();
     }
+
     public String signInNotificationTextRequiredEmail() {
         return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvEmail").getText();
     }

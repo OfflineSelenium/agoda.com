@@ -25,8 +25,14 @@ public abstract class GeneralPage {
         driver.get(siteBase + path);
     }
 
+    //public WebElement findElementByLocator(String property) {
+    // 	return webElementFinder.findElementByLocatorID(property);
+    // }
     public WebElement findElementByLocator(String property) {
-        return webElementFinder.findElementByLocatorID(property);
+        if (property.startsWith("//"))
+            return webElementFinder.findElementByLocatorXPath(property);
+        else
+            return webElementFinder.findElementByLocatorID(property);
     }
 
     public String title() {

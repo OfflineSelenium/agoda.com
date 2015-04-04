@@ -47,7 +47,7 @@ public class LogInPageTest extends BasePage {
      * PERFORMS ALL TEST CASES																	*
      * ******************************************************************************************
      */
-    @Test(description = "Verify logging in passed", groups = {"smoke"})
+    @Test(description = "Verify logging in passed")
     public void verifyLogInPassed() {
         MyBookingsPage myBookingsPage = logInPage.enterEmail(EMAIL1)
                 .enterPassword(PASSWORD)
@@ -61,7 +61,7 @@ public class LogInPageTest extends BasePage {
         logInPage.isLoaded();
     }
 
-    @Test(description = "Verify logging in failed", groups = {"smoke"})
+    @Test(description = "Verify logging in failed")
     public void verifyLogInFailed() {
         logInPage.enterEmail(EMAIL2)
                 .enterPassword(PASSWORD)

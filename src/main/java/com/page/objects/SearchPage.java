@@ -1,6 +1,5 @@
 package com.page.objects;
 
-import com.web.coreframework.WebElementFinder;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -8,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class SearchPage extends GeneralPage {
@@ -32,10 +33,18 @@ public class SearchPage extends GeneralPage {
 
     @FindBy(xpath = "//ul[@id='ui-id-1']/li[@class='ui-menu-promote ui-menu-item entry']")
     private WebElement firstItemInAutoComplete;
+
     @FindBy(xpath = "//div[@class='agoda-guarantee']/a")
     private WebElement bottomLink;
+
     @FindBy(xpath = "html")
     private WebElement page;
+
+    @FindBy(xpath = "//li[contains(@class,'ui-menu-item')]")
+    List<WebElement> IsCountPanelMenuItems;
+
+    @FindBy(id = "ui-id-1")
+    List<WebElement> IsShowPanelAutoCompleteSearch;
 
     public void load() {
         loadPage("");
@@ -74,6 +83,7 @@ public class SearchPage extends GeneralPage {
     }
 
     public SearchPage inputText(String text) {
+        searchInput.clear();
         searchInput.sendKeys(text);
         return this;
     }
@@ -151,5 +161,22 @@ public class SearchPage extends GeneralPage {
     public void resizeWindowReset() {
         Dimension originalSize = new Dimension(1382, 744);
         driver.manage().window().setSize(originalSize);
+    }
+
+    public SearchResultPage clickSearchButton() {
+        searchButton.click();
+        return webPageFactory.getSearchResultPage();
+    }
+
+    public boolean isShowPanelAutoCompleteSearch() {
+        return IsShowPanelAutoCompleteSearch.size() != 0;
+    }
+
+    public int isCountPanelMenuItems() {
+        int count = 0;
+        for (WebElement list : IsCountPanelMenuItems) {
+            count++;
+        }
+        return count;
     }
 }
