@@ -28,6 +28,15 @@ public class WebElementFinder {
         }
     }
 
+    public WebElement findElementByLocatorCSS(String css) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(css)));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     public WebElement findElementByLocatorXPath(String xpath) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, 10);

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Agoda.com: Smarter Hotel Booking Regression Test Suite">
+
+    <parameter name="testdata.filename" value="testdata.properties"/>
+
+    <test name="Agoda.com: Smarter Hotel Booking Regression Test in firefox">
+        <classes>
+            <!--<class name="com.agoda.tests.LogInPageTest">-->
+                <!--<methods>-->
+                    <!--<include name="verifyLogInPassed"/>-->
+                    <!--<include name="verifyLogInFailed"/>-->
+                    <!--<include name="verifyLogInFailedBlankEmail"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+            <class name="com.agoda.tests.SearchPageTest">
+                <methods>
+                    <include name="verifySearchShowAutoComplete"/>
+                    <include name="verifySearchWithDefaultUI"/>
+                    <include name="verifyAgodaPriceGuaranteeLink"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

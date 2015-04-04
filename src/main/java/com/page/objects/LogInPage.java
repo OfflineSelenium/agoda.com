@@ -1,5 +1,6 @@
 package com.page.objects;
 
+import com.web.coreframework.Common;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
@@ -51,5 +52,27 @@ public class LogInPage extends GeneralPage {
 //    public MyBookingsPage logInPassed(String email, String password) {
 //        return enterEmail(email).enterPassword(password).clickSignInPassed();
 //    }
+
+    public boolean seeRedErrorMsgEmailRequired(String text) {
+        String id = "ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvEmail";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+
+        if (!element.getText().equals(text))
+            return false;
+
+        String color = element.getCssValue("color");
+        return Common.convertToHex(color).equals("#ff0000");
+    }
+
+    // Thach
+    public String signInNotificationTextEmail() {
+        return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_revEmail").getText();
+    }
+    public String signInNotificationTextPassword() {
+        return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvPassword").getText();
+    }
+    public String signInNotificationTextRequiredEmail() {
+        return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvEmail").getText();
+    }
 
 }
