@@ -1,6 +1,7 @@
 package com.web.coreframework;
 
 import com.page.objects.SearchPage;
+import com.page.objects.SearchResultsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,6 +22,8 @@ public class WebPageFactory {
     private MyBookingsPage myBookingsPage;
     @Autowired
     private SearchPage searchPage;
+    @Autowired
+    private SearchResultsPage searchResultsPage;
 
     public void checkWeAreOnTheRightPage(String titlePage) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -50,9 +53,14 @@ public class WebPageFactory {
         return searchPage;
     }
 
-    public SearchPage getSearchPage(){
+    public SearchPage getSearchPage() {
         PageFactory.initElements(driver, searchPage);
         return searchPage;
+    }
+	
+	public SearchResultsPage loadSearchResultsPage() {
+        PageFactory.initElements(driver, searchResultsPage);
+        return searchResultsPage;
     }
 
     public WebDriver getDriver() {
