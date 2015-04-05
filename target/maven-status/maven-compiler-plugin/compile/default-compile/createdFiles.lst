@@ -1,8 +1,0 @@
-com\web\coreframework\TestData.class
-com\web\coreframework\WebElementFinder.class
-com\page\objects\MyBookingsPage.class
-com\web\coreframework\Browser.class
-com\web\coreframework\Common.class
-com\web\coreframework\WebPageFactory.class
-com\page\objects\GeneralPage.class
-com\page\objects\LogInPage.class
