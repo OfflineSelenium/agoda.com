@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SearchResultsPage extends GeneralPage {
 
+    @FindBy(xpath = "//div[@class='grid']//h1")
+    private WebElement searchResultMessage;
+
     @FindBy(xpath = "//strong[contains(@class,'blue')]")
     private WebElement result;
 
@@ -23,8 +26,13 @@ public class SearchResultsPage extends GeneralPage {
         webPageFactory.checkWeAreOnTheRightPage("Search Results for ho chi minh");
     }
 
-    public String getColor() {
+    public String shouldSeeColorSearchQuery() {
         String color = result.getCssValue("color");
         return Common.convertToHex(color);
     }
+
+    public String shouldSeeTextSearchResultMessage() {
+        return searchResultMessage.getText();
+    }
+
 }
