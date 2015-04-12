@@ -4,7 +4,6 @@ import com.page.objects.LogInPage;
 import com.page.objects.MyBookingsPage;
 import com.web.coreframework.Common;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -29,16 +28,13 @@ public class MyBookingsPageTest extends BasePage {
     @BeforeMethod
     public void beforeMethod() {
         myBookingsPage.load();
-        myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
 
-        // Verify the displayed correct page
-        myBookingsPage.isLoaded();
     }
 
-    @AfterMethod
-    public void afterMethod() {
-        myBookingsPage.clickSignOutOnTop();
-    }
+//    @AfterMethod
+//    public void afterMethod() {
+//        myBookingsPage.clickSignOutOnTop();
+//    }
 
     /**
      * ******************************************************************************************
@@ -60,12 +56,16 @@ public class MyBookingsPageTest extends BasePage {
 
     @Test(description = "verify Text Header")
     public void verifyShowTextHeader() {
+        myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
+
+        // Verify the displayed correct page
+        myBookingsPage.isLoaded();
+
         myBookingsPage.clickMyCardDetails();
         Common.sleep(5000);
         myBookingsPage.confirmLoginAgian(PASSWORD);
 
-        System.out.println(">>>>>>>>>>>>>1");
         Assert.assertTrue(myBookingsPage.shouldDisplayTextHeader("My Card Details"));
-        System.out.println(">>>>>>>>>>>>>2");
+        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
     }
 }
