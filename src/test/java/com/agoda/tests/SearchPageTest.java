@@ -16,12 +16,16 @@ public class SearchPageTest extends BasePage {
 
     private String SEARCH_QUERY_1;
     private final String COLOR_BLUE = "#0283df";
+    private String SEARCH_QUERY_2;
+    private String SEARCH_QUERY_3;
 
     @BeforeClass
     public void beforeClass() {
         searchPage = webPageFactory.loadSearchPage();
 
         SEARCH_QUERY_1 = testData.getProperty("searchQuery1");
+        SEARCH_QUERY_2 = testData.getProperty("searchQuery2");
+        SEARCH_QUERY_3 = testData.getProperty("searchQuery3");
     }
 
     @BeforeMethod
@@ -105,4 +109,25 @@ public class SearchPageTest extends BasePage {
         Assert.assertEquals(searchResultsPage.shouldSeeColorSearchQuery(), COLOR_BLUE);
     }
 
+    @Test(description = "Search-NoCriteria-ShowErrorMessage")
+    public void verifySearchNoCriteriaShowErrorMessage(){
+        searchPage.clickSearchButtonShowValidation();
+
+        Assert.assertEquals(searchPage.shouldSeeTextAlert(), "Please enter the name of a Country, City, Airport, Area, Landmark or Hotel to proceed.");
+    }
+
+    @Test(description = "Search-HasNumber")
+    public void verifySearchHasNumber() {
+        searchResultsPage = searchPage.searchWithQuery(SEARCH_QUERY_2);
+
+        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", SEARCH_QUERY_2));
+    }
+
+    @Test(description = "Search-SpecialCharacters")
+    public void verifySearchSpecialCharacters() {
+        searchPage.enterSearchQuery(SEARCH_QUERY_3)
+                .clickSearchButtonShowResultsPage();
+
+        Assert.assertEquals(searchPage.shouldSeeTextAlert(), "Please enter the name of a Country, City, Airport, Area, Landmark or Hotel to proceed.");
+    }
 }
