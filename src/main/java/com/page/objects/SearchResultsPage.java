@@ -23,8 +23,10 @@ public class SearchResultsPage extends GeneralPage {
     }
 
     public void isLoad() {
-        webPageFactory.checkWeAreOnTheRightPage("Search Results for ho chi minh");
+        webPageFactory.checkWeAreOnTheRightPage("Search Results for");
     }
+    //minh phuong: function check with contains, therefore checkWeAreOnTheRightPage("Search Results for").
+    //Please check for updates, a.Thinh
 
     public String shouldSeeColorSearchQuery() {
         String color = result.getCssValue("color");
