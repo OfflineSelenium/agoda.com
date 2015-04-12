@@ -8,9 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-/**
- * Created by Administrator on 4/12/2015.
- */
 public class MyBookingsPageTest extends BasePage {
 
     private MyBookingsPage myBookingsPage;
