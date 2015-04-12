@@ -18,17 +18,17 @@ public class MyBookingsPageTest extends BasePage {
 
     @BeforeClass
     public void beforeClass() {
-        logInPage = webPageFactory.loadLogInPage();
-        myBookingsPage = webPageFactory.getMyBookingsPage();
-
         EMAIL1 = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
+
+        logInPage = webPageFactory.loadLogInPage();
+        myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
+        myBookingsPage.isLoaded();
     }
 
     @BeforeMethod
     public void beforeMethod() {
         myBookingsPage.load();
-
     }
 
 //    @AfterMethod
@@ -54,18 +54,15 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(6), "Sign Out");
     }
 
-    @Test(description = "verify Text Header")
-    public void verifyShowTextHeader() {
-        myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
+//    @Test(description = "verify Text Header")
+//    public void verifyShowTextHeader() {
+//        // Verify the displayed correct page
+//        myBookingsPage.clickMyCardDetails();
+//        Common.sleep(5000);
+//        myBookingsPage.confirmLoginAgian(PASSWORD);
+//
+//        Assert.assertTrue(myBookingsPage.shouldDisplayTextHeader("My Card Details"));
+//        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
+//    }
 
-        // Verify the displayed correct page
-        myBookingsPage.isLoaded();
-
-        myBookingsPage.clickMyCardDetails();
-        Common.sleep(5000);
-        myBookingsPage.confirmLoginAgian(PASSWORD);
-
-        Assert.assertTrue(myBookingsPage.shouldDisplayTextHeader("My Card Details"));
-        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
-    }
 }

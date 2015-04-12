@@ -28,6 +28,12 @@
                     <include name="verifySearchShowResultsFound"/>
                 </methods>
             </class>
+            <class name="com.agoda.tests.MyBookingsPageTest">
+                <methods>
+                    <include name="verifyEmailLoginShowCorrect"/>
+                    <!--<include name="verifyShowTextHeader"/>-->
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
