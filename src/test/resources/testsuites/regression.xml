@@ -26,6 +26,9 @@
                     <include name="verifySearchWithEmptyValueSearchInput"/>
                     <include name="verifySearchWithSpecialCharacters"/>
                     <include name="verifySearchShowResultsFound"/>
+                    <include name="verifySearchNoCriteriaShowErrorMessage"/>
+                    <include name="verifySearchHasNumber"/>
+                    <include name="verifySearchSpecialCharacters"/>
                 </methods>
             </class>
             <class name="com.agoda.tests.MyBookingsPageTest">

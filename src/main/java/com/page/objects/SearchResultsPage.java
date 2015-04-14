@@ -23,7 +23,7 @@ public class SearchResultsPage extends GeneralPage {
     }
 
     public void isLoad() {
-        webPageFactory.checkWeAreOnTheRightPage("Search Results for ho chi minh");
+        webPageFactory.checkWeAreOnTheRightPage("Search Results for");
     }
 
     public String shouldSeeColorSearchQuery() {
