@@ -3,16 +3,21 @@ package com.agoda.tests;
 import com.page.objects.SearchPage;
 import com.page.objects.SearchResultsPage;
 import com.web.coreframework.Common;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.util.List;
 
 public class SearchPageTest extends BasePage {
 
     private SearchPage searchPage;
     private SearchResultsPage searchResultsPage;
+    private WebDriver driver;
 
     private String SEARCH_QUERY_1;
     private final String COLOR_BLUE = "#0283df";
