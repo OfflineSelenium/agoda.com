@@ -1,5 +1,8 @@
 package com.page.objects;
 
+import com.web.coreframework.Common;
+import com.web.coreframework.WebElementFinder;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
@@ -27,7 +30,7 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(xpath = "//*[contains(@class,'header')]//h1")
     private WebElement textHeader;
 
-    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_MyCreditCardsMenuItem")
     private WebElement linkMyCardDetails;
 
     @FindBy(id = "password")
@@ -41,9 +44,6 @@ public class MyBookingsPage extends GeneralPage {
 
     @FindBy(id = "ShowAddCardDivButton")
     private WebElement ShowAddCardDivButton;
-
-    @FindBy(xpath = "//input[@id='KeepCardSaveButton']")
-    private WebElement bntSave;
 
     public void load() {
         loadPage("/rewards/managebooking.html");
@@ -74,6 +74,7 @@ public class MyBookingsPage extends GeneralPage {
 
     public MyBookingsPage clickMyCardDetails() {
         linkMyCardDetails.click();
+        webElementFinder.waitElementLocatorLoaded(By.id("password"));
         return this;
     }
 
@@ -100,8 +101,10 @@ public class MyBookingsPage extends GeneralPage {
         return ShowAddCardDivButton.isDisplayed();
     }
 
-    public boolean shouldDisplaySaveButton() {
-        return bntSave.isDisplayed();
+    public boolean shouldDisplayButtonSave() {
+        String xpath="//input[@id='KeepCardSaveButton']";
+        WebElement element= webElementFinder.findElementByLocatorXPath(xpath);
+        return element.isDisplayed();
     }
 }
 
