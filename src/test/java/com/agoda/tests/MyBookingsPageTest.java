@@ -19,11 +19,8 @@ public class MyBookingsPageTest extends BasePage {
 
     @BeforeClass
     public void beforeClass() {
-        logInPage = webPageFactory.getLogInPage();
         EMAIL1 = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
-
-        logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
         myBookingsPage.isLoaded();
     }
@@ -56,31 +53,27 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(6), "Sign Out");
     }
 
-    @Test(description = "VerifyDefaultMyBookingsPage")
+    @Test(description = "Verify Default MyBookings Page")
     public void VerifyDefaultMyBookingsPage() {
-        myBookingsPage.isLoaded();
         Assert.assertEquals(myBookingsPage.shouldSeeTextResultBookings(), "0 Total Bookings");
     }
 
-    @Test(description = "VerifyDefaultMyReviewPage")
+    @Test(description = "Verify Default MyReview Page")
     public void VerifyDefaultMyReviewPage() {
-        myBookingsPage.isLoaded();
         myBookingsPage.clickMyReviewsMenu();
         Assert.assertEquals(myBookingsPage.shouldSeeTextMessageMyReviews(), "You currently have no hotels to review.\n" +
                 "Please visit us again after your departure date.");
     }
 
-    @Test(description = "VerifyDefaultMyProfilePage")
+    @Test(description = "Verify Default MyProfile Page")
     public void VerifyDefaultMyProfilePage() {
-        myBookingsPage.isLoaded();
         myBookingsPage.clickMyProfileMenu();
         Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), "Test Agoda");
-        Assert.assertEquals(myBookingsPage.shouldSeeMailInMyProfile(), "test.secude@gmail.com");
+        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), "test.secude@gmail.com");
     }
 
-    @Test(description = "VerifyDefaultMyCardPage")
+    @Test(description = "Verify Default MyCard Page")
     public void VerifyDefaultMyCardPage() {
-        myBookingsPage.isLoaded();
         myBookingsPage.clickMyCardDetails();
         Assert.assertEquals(myBookingsPage.shouldSeeNameInMyCardDetails(), "test.secude@gmail.com");
     }
