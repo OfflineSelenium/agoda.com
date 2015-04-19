@@ -4,6 +4,7 @@ import com.page.objects.LogInPage;
 import com.page.objects.MyBookingsPage;
 import com.web.coreframework.Common;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -18,7 +19,8 @@ public class MyBookingsPageTest extends BasePage {
 
     @BeforeClass
     public void beforeClass() {
-        EMAIL1 = testData.getProperty("email1");
+        logInPage = webPageFactory.getLogInPage();
+        EMAIL = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
 
         logInPage = webPageFactory.loadLogInPage();
@@ -29,6 +31,12 @@ public class MyBookingsPageTest extends BasePage {
     @BeforeMethod
     public void beforeMethod() {
         myBookingsPage.load();
+    }
+	
+	@Test(description = "VerifyDefaultMyBookingsPage")
+    public void VerifyDefaultMyBookingsPage() {
+        myBookingsPage.isLoaded();
+        Assert.assertEquals(myBookingsPage.shouldSeeTextResultBookings(), "0 Total Bookings");
     }
 
 //    @AfterMethod
@@ -49,10 +57,40 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(1), "My Reviews");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(2), "My Profile");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(3), "My Card Details");
-        Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(4), "Change Password");
+	    Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(4), "Change Password");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(5), "Refer a Friend");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(6), "Sign Out");
     }
+	
+	@Test(description = "VerifyDefaultMyBookingsPage")
+     public void VerifyDefaultMyBookingsPage() {
+        myBookingsPage.isLoaded();
+        Assert.assertEquals(myBookingsPage.shouldSeeTextResultBookings(), "0 Total Bookings");
+    }
+	
+	 @Test(description = "VerifyDefaultMyReviewPage")
+    public void VerifyDefaultMyReviewPage() {
+        myBookingsPage.isLoaded();
+        myBookingsPage.clickMyReviewsMenu();
+        Assert.assertEquals(myBookingsPage.shouldSeeTextMessageMyReviews(), "You currently have no hotels to review.\n" +
+                "Please visit us again after your departure date.");
+    }
+
+    @Test(description = "VerifyDefaultMyProfilePage")
+    public void VerifyDefaultMyProfilePage() {
+        myBookingsPage.isLoaded();
+        myBookingsPage.clickMyProfileMenu();
+        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), "Test Agoda");
+        Assert.assertEquals(myBookingsPage.shouldSeeMailInMyProfile(), "test.secude@gmail.com");
+    }
+	
+	@Test(description = "VerifyDefaultMyCardPage")
+    public void VerifyDefaultMyCardPage() {
+        myBookingsPage.isLoaded();
+        myBookingsPage.clickMyCardDetails();
+        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyCardDetails(), "test.secude@gmail.com");
+    }
+
 
 //    @Test(description = "verify Text Header")
 //    public void verifyShowTextHeader() {
