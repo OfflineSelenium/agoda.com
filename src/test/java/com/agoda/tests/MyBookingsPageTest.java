@@ -65,4 +65,10 @@ public class MyBookingsPageTest extends BasePage {
 //        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
 //    }
 
+    @Test(description = "Verify button Save displayed")
+    public void verifyButtonSaveDisplay() {
+        myBookingsPage = myBookingsPage.clickMyCardDetails().enterPasswordAgian(PASSWORD).clickSignIn();
+        Assert.assertTrue(myBookingsPage.shouldDisplayButtonSave());
+    }
+
 }
