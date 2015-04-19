@@ -135,7 +135,7 @@ public class MyBookingsPage extends GeneralPage {
         return element.getText();
     }
 
-    public String shouldSeeMailInMyProfile() {
+    public String shouldSeeEmailInMyProfile() {
         String xpath = "//*[@id='udpBasicInfo']/div[2]/p[4]";
         WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
         return element.getText();
