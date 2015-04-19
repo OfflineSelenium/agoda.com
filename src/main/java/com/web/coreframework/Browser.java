@@ -8,7 +8,9 @@ import org.openqa.selenium.logging.LogType;
 import org.openqa.selenium.logging.LoggingPreferences;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import java.io.File;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
 /**
@@ -29,6 +31,7 @@ public class Browser {
         browserPath = String.format("%s\\resources\\browser-drivers\\", System.getProperty("user.dir"));
         WebDriver driver = buildDriver();
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         return driver;
     }
 
