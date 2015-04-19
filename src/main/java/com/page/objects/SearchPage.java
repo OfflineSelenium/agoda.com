@@ -1,8 +1,11 @@
 package com.page.objects;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -34,6 +37,13 @@ public class SearchPage extends GeneralPage {
 
     @FindBy(id = "NightCount")
     private WebElement chooseNightCount;
+
+    @FindBy(xpath = "//ul[@id='ui-id-1']/li[@class='ui-menu-promote ui-menu-item entry']")
+    private WebElement firstItemInAutoComplete;
+    @FindBy(xpath = "//div[@class='agoda-guarantee']/a")
+    private WebElement bottomLink;
+    @FindBy(xpath = "html")
+    private WebElement page;
 
     public void load() {
         loadPage("");
@@ -201,9 +211,9 @@ public class SearchPage extends GeneralPage {
 //        driver.manage().window().setSize(originalSize);
 //    }
 //
-//    public SearchPage inputKey() {
-//        searchInput.sendKeys(Keys.chord(Keys.CONTROL, "c"));
-//        return webPageFactory.loadSearchPage();
-//    }
+    public SearchPage inputKey() {
+        searchInput.sendKeys(Keys.chord(Keys.CONTROL, "c"));
+        return webPageFactory.loadSearchPage();
+    }
 
 }
