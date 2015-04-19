@@ -11,6 +11,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import java.util.List;
 
 public class SearchPageTest extends BasePage {
@@ -72,12 +73,12 @@ public class SearchPageTest extends BasePage {
     public void verifySearchWithNoResults() {
         String query = "bong da tivi";
         searchResultsPage = searchPage.enterSearchQuery(query)
-                                      .chooseDay("Thu 12")
-                                      .chooseMonthYear("Feb, 2015")
-                                      .chooseDataPicker()
-                                      .chooseNight("3")
-                                      .chooseDatePickerCheckOut()
-                                      .clickSearchButtonShowResultsPage();
+                .chooseDay("Thu 12")
+                .chooseMonthYear("Feb, 2015")
+                .chooseDataPicker()
+                .chooseNight("3")
+                .chooseDatePickerCheckOut()
+                .clickSearchButtonShowResultsPage();
 
         Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", query));
     }
@@ -85,7 +86,7 @@ public class SearchPageTest extends BasePage {
     @Test(description = "Search-EmptyValueInput")
     public void verifySearchWithEmptyValueSearchInput() {
         searchPage.enterSearchQuery("")
-                  .clickSearchButtonShowValidation();
+                .clickSearchButtonShowValidation();
 
         Assert.assertEquals(searchPage.shouldSeeTextAlert(), "Please enter the name of a Country, City, Airport, Area, Landmark or Hotel to proceed.");
     }
@@ -95,12 +96,12 @@ public class SearchPageTest extends BasePage {
         String query = "123@#$hanoi";
         String queryAfterSearch = "123hanoi";
         searchResultsPage = searchPage.enterSearchQuery(query)
-                                      .chooseDay("Thu 12")
-                                      .chooseMonthYear("Feb, 2015")
-                                      .chooseDataPicker()
-                                      .chooseNight("3")
-                                      .chooseDatePickerCheckOut()
-                                      .clickSearchButtonShowResultsPage();
+                .chooseDay("Thu 12")
+                .chooseMonthYear("Feb, 2015")
+                .chooseDataPicker()
+                .chooseNight("3")
+                .chooseDatePickerCheckOut()
+                .clickSearchButtonShowResultsPage();
 
         Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", queryAfterSearch));
     }
@@ -129,7 +130,7 @@ public class SearchPageTest extends BasePage {
     @Test(description = "Search-SpecialCharacters")
     public void verifySearchSpecialCharacters() {
         searchPage.enterSearchQuery(SEARCH_QUERY_3)
-                  .clickSearchButtonShowResultsPage();
+                .clickSearchButtonShowResultsPage();
         Assert.assertEquals(searchPage.shouldSeeTextAlert(), "Please enter the name of a Country, City, Airport, Area, Landmark or Hotel to proceed.");
     }
 
