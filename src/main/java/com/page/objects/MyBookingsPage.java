@@ -42,6 +42,9 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(id = "ShowAddCardDivButton")
     private WebElement ShowAddCardDivButton;
 
+    @FindBy(xpath = "//input[@id='KeepCardSaveButton']")
+    private WebElement bntSave;
+
     public void load() {
         loadPage("/rewards/managebooking.html");
     }
@@ -95,6 +98,10 @@ public class MyBookingsPage extends GeneralPage {
 
     public boolean verifyShouldDisplayAddNewCardButton() {
         return ShowAddCardDivButton.isDisplayed();
+    }
+
+    public boolean shouldDisplaySaveButton() {
+        return bntSave.isDisplayed();
     }
 }
 
