@@ -20,7 +20,7 @@ public class MyBookingsPageTest extends BasePage {
     @BeforeClass
     public void beforeClass() {
         logInPage = webPageFactory.getLogInPage();
-        EMAIL = testData.getProperty("email1");
+        EMAIL1 = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
 
         logInPage = webPageFactory.loadLogInPage();
@@ -31,12 +31,6 @@ public class MyBookingsPageTest extends BasePage {
     @BeforeMethod
     public void beforeMethod() {
         myBookingsPage.load();
-    }
-	
-	@Test(description = "VerifyDefaultMyBookingsPage")
-    public void VerifyDefaultMyBookingsPage() {
-        myBookingsPage.isLoaded();
-        Assert.assertEquals(myBookingsPage.shouldSeeTextResultBookings(), "0 Total Bookings");
     }
 
 //    @AfterMethod
@@ -57,18 +51,18 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(1), "My Reviews");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(2), "My Profile");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(3), "My Card Details");
-	    Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(4), "Change Password");
+        Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(4), "Change Password");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(5), "Refer a Friend");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(6), "Sign Out");
     }
-	
-	@Test(description = "VerifyDefaultMyBookingsPage")
-     public void VerifyDefaultMyBookingsPage() {
+
+    @Test(description = "VerifyDefaultMyBookingsPage")
+    public void VerifyDefaultMyBookingsPage() {
         myBookingsPage.isLoaded();
         Assert.assertEquals(myBookingsPage.shouldSeeTextResultBookings(), "0 Total Bookings");
     }
-	
-	 @Test(description = "VerifyDefaultMyReviewPage")
+
+    @Test(description = "VerifyDefaultMyReviewPage")
     public void VerifyDefaultMyReviewPage() {
         myBookingsPage.isLoaded();
         myBookingsPage.clickMyReviewsMenu();
@@ -83,8 +77,8 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), "Test Agoda");
         Assert.assertEquals(myBookingsPage.shouldSeeMailInMyProfile(), "test.secude@gmail.com");
     }
-	
-	@Test(description = "VerifyDefaultMyCardPage")
+
+    @Test(description = "VerifyDefaultMyCardPage")
     public void VerifyDefaultMyCardPage() {
         myBookingsPage.isLoaded();
         myBookingsPage.clickMyCardDetails();
