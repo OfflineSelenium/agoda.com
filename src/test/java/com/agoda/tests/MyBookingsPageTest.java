@@ -29,7 +29,6 @@ public class MyBookingsPageTest extends BasePage {
     @BeforeMethod
     public void beforeMethod() {
         myBookingsPage.load();
-        Common.sleep(5000);
     }
 
 //    @AfterMethod
@@ -67,8 +66,8 @@ public class MyBookingsPageTest extends BasePage {
 //    }
 
     @Test(description = "Verify button Save displayed")
-    public void verifyButtonSaveDisplay(){
-        myBookingsPage=myBookingsPage.clickMyCardDetails();
+    public void verifyButtonSaveDisplay() {
+        myBookingsPage = myBookingsPage.clickMyCardDetails();
         Assert.assertTrue(myBookingsPage.shouldDisplaySaveButton());
     }
 

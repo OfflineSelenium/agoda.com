@@ -100,7 +100,7 @@ public class MyBookingsPage extends GeneralPage {
         return ShowAddCardDivButton.isDisplayed();
     }
 
-    public boolean shouldDisplaySaveButton(){
+    public boolean shouldDisplaySaveButton() {
         return bntSave.isDisplayed();
     }
 }
