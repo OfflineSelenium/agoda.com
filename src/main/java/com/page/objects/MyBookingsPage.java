@@ -23,11 +23,11 @@ public class MyBookingsPage extends GeneralPage {
 
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtSignOut")
     private WebElement signOut;
-	
-	@FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
+
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
     private WebElement myReviewsMenu;
-	
-	@FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
+
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
     private WebElement myProfileMenu;
 
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")
@@ -66,17 +66,13 @@ public class MyBookingsPage extends GeneralPage {
         signOut.click();
         return webPageFactory.getLogInPage();
     }
-	
+
     public void clickMyReviewsMenu() {
         myReviewsMenu.click();
-	}
-	
-    public void clickMyProfileMenu() {
-         myProfileMenu.click();
     }
-	
-	public void clickMyCardDetails() {
-        myCardDetails.click();
+
+    public void clickMyProfileMenu() {
+        myProfileMenu.click();
     }
 
     public boolean shouldDisplayEmailLogin(String text) {
@@ -98,7 +94,7 @@ public class MyBookingsPage extends GeneralPage {
         return this;
     }
 
-    public MyBookingsPage enterPasswordAgian(String password) {
+    public MyBookingsPage enterPasswordAgain(String password) {
         enterPassWord.sendKeys(password);
         return this;
     }
@@ -109,7 +105,7 @@ public class MyBookingsPage extends GeneralPage {
     }
 
     public MyBookingsPage confirmLoginAgian(String password) {
-        return enterPasswordAgian(password).clickSignIn();
+        return enterPasswordAgain(password).clickSignIn();
     }
 
     public LogInPage clickSignOutOnTop() {
@@ -119,9 +115,9 @@ public class MyBookingsPage extends GeneralPage {
 
     public boolean verifyShouldDisplayAddNewCardButton() {
         return ShowAddCardDivButton.isDisplayed();
-	}
+    }
 
-	public String shouldSeeTextResultBookings() {
+    public String shouldSeeTextResultBookings() {
         String xpath = "//a[@id ='ctl00_ctl00_MainContent_ContentMain_lbtTotalBooking']";
         WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
         return element.getText();
