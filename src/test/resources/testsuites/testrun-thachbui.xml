@@ -31,10 +31,9 @@
             <class name="com.agoda.tests.MyBookingsPageTest">
                 <methods>
                     <!--<include name="verifyEmailLoginShowCorrect"/>-->
-                    <include name="verifyShowTextHeader"/>
-                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
-                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
-                    <!--<include name="verifySearchShowResultsFound"/>-->
+                    <!--<include name="verifyShowTextHeader"/>-->
+                    <!--<include name="verifyUpdateInformationProfileIncorrect"/>-->
+                    <include name="verifyUpdateInformationSuccessfully"/>
                 </methods>
             </class>
         </classes>

@@ -2,7 +2,6 @@ package com.agoda.tests;
 
 import com.page.objects.LogInPage;
 import com.page.objects.MyBookingsPage;
-import com.web.coreframework.Common;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -31,17 +30,12 @@ public class MyBookingsPageTest extends BasePage {
         myBookingsPage.load();
     }
 
-//    @AfterMethod
-//    public void afterMethod() {
-//        myBookingsPage.clickSignOutOnTop();
-//    }
-
     /**
      * ******************************************************************************************
      * PERFORMS ALL TEST CASES																	*
      * ******************************************************************************************
      */
-    @Test(description = "Verify Show Profile")
+    @Test(description = "verify Email Login Show Correct")
     public void verifyEmailLoginShowCorrect() {
         //verify profile name
         Assert.assertTrue(myBookingsPage.shouldDisplayEmailLogin(EMAIL1));
@@ -54,15 +48,45 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(6), "Sign Out");
     }
 
-//    @Test(description = "verify Text Header")
-//    public void verifyShowTextHeader() {
-//        // Verify the displayed correct page
-//        myBookingsPage.clickMyCardDetails();
-//        Common.sleep(5000);
-//        myBookingsPage.confirmLoginAgian(PASSWORD);
-//
-//        Assert.assertTrue(myBookingsPage.shouldDisplayTextHeader("My Card Details"));
-//        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
-//    }
+    @Test(description = "verify Show Text Header")
+    public void verifyShowTextHeader() {
+        // Verify the displayed correct page
+        myBookingsPage.clickMyCardDetails()
+                .confirmLoginAgian(PASSWORD);
 
+        Assert.assertTrue(myBookingsPage.shouldDisplayTextHeader("My Card Details"));
+        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
+    }
+
+    @Test(description = "verify Update Information Profile Incorrect")
+    public void verifyUpdateInformationProfileIncorrect() {
+//        myBookingsPage.isLoaded();
+        myBookingsPage.clickMyProfile()
+                      .clickLinkEditInformation()
+                      .chooseCountryOfPassport("Please Select")
+                      .clickLinkSaveInformation();
+
+        Assert.assertTrue(myBookingsPage.shouldSeeTextNotificationError("Basic Information is incorrect."));
+    }
+
+    @Test(description = "verify Update Information Successfully")
+    public void verifyUpdateInformationSuccessfully() {
+        myBookingsPage.isLoaded();
+        myBookingsPage.clickMyProfile()
+                      .clickLinkEditInformation()
+                      .chooseCountryOfPassport("Vietnam")
+                      .clickLinkSaveInformation();
+
+        System.out.println(myBookingsPage.shouldSeeTextSelectedCountryDropdown());
+
+        //verify information has been changed
+        Assert.assertEquals(myBookingsPage.shouldSeeTextSelectedCountryDropdown(), "Vietnam");
+//        Assert.assertEquals(myBookingsPage.shouldSeeTextBasicInformationUpdateSuccessfully(), "Your Basic Information has been changed successfully.");
+
+//      //Clean up data
+//        myBookingsPage.clickMyProfile()
+//                      .clickLinkEditInformation()
+//                      .chooseCountryOfPassport("United Kingdom")
+//                      .clickLinkSaveInformation();
+    }
 }

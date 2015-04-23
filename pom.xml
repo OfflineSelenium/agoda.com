@@ -43,7 +43,7 @@
                 <version>2.14.1</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testsuites/regression.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testsuites/testrun-thachbui.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <properties>
                         <property>

@@ -27,5 +27,4 @@ public class Common {
 
         return String.format("#%02x%02x%02x", hexValue1, hexValue2, hexValue3);
     }
-
 }

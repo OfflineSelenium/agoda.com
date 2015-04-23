@@ -2,9 +2,7 @@ package com.agoda.tests;
 
 import com.page.objects.SearchPage;
 import com.page.objects.SearchResultsPage;
-import com.web.coreframework.Common;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
