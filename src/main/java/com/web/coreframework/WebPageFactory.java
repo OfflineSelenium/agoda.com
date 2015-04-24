@@ -1,15 +1,12 @@
 package com.web.coreframework;
 
-import com.page.objects.SearchPage;
-import com.page.objects.SearchResultsPage;
+import com.page.objects.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.page.objects.LogInPage;
-import com.page.objects.MyBookingsPage;
 
 @Component
 public class WebPageFactory {
@@ -24,6 +21,8 @@ public class WebPageFactory {
     private SearchPage searchPage;
     @Autowired
     private SearchResultsPage searchResultsPage;
+    @Autowired
+    private ConfirmPasswordSignInPage confirmPasswordSignInPage;
 
     public void checkWeAreOnTheRightPage(String titlePage) {
         WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -57,10 +56,21 @@ public class WebPageFactory {
         PageFactory.initElements(driver, searchPage);
         return searchPage;
     }
-	
-	public SearchResultsPage loadSearchResultsPage() {
+
+    public SearchResultsPage loadSearchResultsPage() {
         PageFactory.initElements(driver, searchResultsPage);
         return searchResultsPage;
+    }
+
+    public ConfirmPasswordSignInPage loadConfirmPasswordSignInPage() {
+        PageFactory.initElements(driver, confirmPasswordSignInPage);
+        confirmPasswordSignInPage.load();
+        return confirmPasswordSignInPage;
+    }
+
+    public ConfirmPasswordSignInPage getConfirmPasswordSignInPage() {
+        PageFactory.initElements(driver, confirmPasswordSignInPage);
+        return confirmPasswordSignInPage;
     }
 
     public WebDriver getDriver() {

@@ -30,12 +30,6 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")
     private WebElement linkMyCardDetails;
 
-    @FindBy(id = "password")
-    private WebElement enterPassWord;
-
-    @FindBy(id = "signin-btn")
-    private WebElement signInButton;
-
     @FindBy(xpath = "//a[.='Sign Out']")
     private WebElement signOutOnTop;
 
@@ -69,23 +63,14 @@ public class MyBookingsPage extends GeneralPage {
         return textHeader.getText().equals(text);
     }
 
+    public ConfirmPasswordSignInPage clickMyCardDetailsFirstTime() {
+        linkMyCardDetails.click();
+        return webPageFactory.getConfirmPasswordSignInPage();
+    }
+
     public MyBookingsPage clickMyCardDetails() {
         linkMyCardDetails.click();
         return this;
-    }
-
-    public MyBookingsPage enterPasswordAgian(String password) {
-        enterPassWord.sendKeys(password);
-        return this;
-    }
-
-    public MyBookingsPage clickSignIn() {
-        signInButton.click();
-        return this;
-    }
-
-    public MyBookingsPage confirmLoginAgian(String password) {
-        return enterPasswordAgian(password).clickSignIn();
     }
 
     public LogInPage clickSignOutOnTop() {
@@ -95,6 +80,27 @@ public class MyBookingsPage extends GeneralPage {
 
     public boolean verifyShouldDisplayAddNewCardButton() {
         return ShowAddCardDivButton.isDisplayed();
+    }
+
+    public boolean shouldDisplayButtonSave() {
+        String xpath = "//input[@id='KeepCardSaveButton']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.isDisplayed();
+    }
+
+    public boolean shouldDisplayCheckbox() {
+        String id = "KeepCard";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        return element.isDisplayed();
+    }
+
+    public boolean defaultValueOfCheckboxShouldUncheck() {
+        String id = "KeepCard";
+        boolean isSelected = webElementFinder.findElementByLocatorID(id).isSelected();
+        if(!isSelected) {
+            return true;
+        }
+        return false;
     }
 }
 

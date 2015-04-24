@@ -58,4 +58,16 @@ public class WebElementFinder {
         }
     }
 
+    /**
+     * Waiting for web element is present on web page
+     */
+    public WebElement waitElementLocatorLoaded(final By locator) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

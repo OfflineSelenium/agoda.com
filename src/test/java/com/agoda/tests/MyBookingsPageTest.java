@@ -1,8 +1,8 @@
 package com.agoda.tests;
 
+import com.page.objects.ConfirmPasswordSignInPage;
 import com.page.objects.LogInPage;
 import com.page.objects.MyBookingsPage;
-import com.web.coreframework.Common;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -12,6 +12,7 @@ public class MyBookingsPageTest extends BasePage {
 
     private MyBookingsPage myBookingsPage;
     private LogInPage logInPage;
+    private ConfirmPasswordSignInPage confirmPasswordSignInPage;
 
     private String EMAIL1;
     private String PASSWORD;
@@ -24,6 +25,10 @@ public class MyBookingsPageTest extends BasePage {
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
         myBookingsPage.isLoaded();
+
+        //Confirm password when enter My Card Details
+        confirmPasswordSignInPage = myBookingsPage.clickMyCardDetailsFirstTime();
+        myBookingsPage = confirmPasswordSignInPage.enterPasswordAgian(PASSWORD).clickSignIn();
     }
 
     @BeforeMethod
@@ -64,5 +69,18 @@ public class MyBookingsPageTest extends BasePage {
 //        Assert.assertTrue(myBookingsPage.shouldDisplayTextHeader("My Card Details"));
 //        Assert.assertTrue(myBookingsPage.verifyShouldDisplayAddNewCardButton());
 //    }
+
+    @Test(description = "Verify button Save displayed")
+    public void verifyButtonSaveDisplay() {
+        myBookingsPage = myBookingsPage.clickMyCardDetails();
+        Assert.assertTrue(myBookingsPage.shouldDisplayButtonSave());
+    }
+
+    @Test(description = "Verify checkbox is present and default deactivate")
+    public void verifyCheckboxDefault() {
+        myBookingsPage = myBookingsPage.clickMyCardDetails();
+        Assert.assertTrue(myBookingsPage.shouldDisplayCheckbox());
+        Assert.assertTrue(myBookingsPage.defaultValueOfCheckboxShouldUncheck());
+    }
 
 }
