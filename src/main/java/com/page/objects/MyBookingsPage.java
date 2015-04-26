@@ -1,9 +1,6 @@
 package com.page.objects;
 
 import com.web.coreframework.Common;
-import com.web.coreframework.WebElementFinder;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
@@ -156,6 +153,35 @@ public class MyBookingsPage extends GeneralPage {
         WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
         String col = element.getCssValue("color");
         return Common.convertToHex(col);
+    }
+
+    public String shouldSeeTextResultBookings() {
+        String xpath = "//a[@id ='ctl00_ctl00_MainContent_ContentMain_lbtTotalBooking']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
+
+    public String shouldSeeTextMessageMyReviews() {
+        String id = "ctl00_ctl00_MainContent_ContentMain_lblHotelReviewMessage";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        return element.getText();
+    }
+
+    public String shouldSeeNameInMyProfile() {
+        String xpath = "//*[@id='udpBasicInfo']/div[2]/p[2]";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
+
+    public String shouldSeeEmailInMyProfile() {
+        String xpath = "//*[@id='udpBasicInfo']/div[2]/p[4]";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
+
+    public MyBookingsPage clickMyProfileMenu() {
+        myProfileMenu.click();
+        return this;
     }
 }
 
