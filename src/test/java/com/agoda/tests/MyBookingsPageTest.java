@@ -20,8 +20,9 @@ public class MyBookingsPageTest extends BasePage {
 
     @BeforeClass
     public void beforeClass() {
-        EMAIL1 = testData.getProperty("email4");
-		PASSWORD = testData.getProperty("password");
+        EMAIL1 = testData.getProperty("email1");
+        PASSWORD = testData.getProperty("password");
+
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
         myBookingsPage.isLoaded();
@@ -35,11 +36,6 @@ public class MyBookingsPageTest extends BasePage {
     public void beforeMethod() {
         myBookingsPage.load();
     }
-
-//    @AfterMethod
-//    public void afterMethod() {
-//        myBookingsPage.clickSignOutOnTop();
-//    }
 
     /**
      * ******************************************************************************************

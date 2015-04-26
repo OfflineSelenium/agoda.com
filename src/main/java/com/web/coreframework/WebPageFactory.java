@@ -18,6 +18,8 @@ public class WebPageFactory {
     @Autowired
     private MyBookingsPage myBookingsPage;
     @Autowired
+    private MyProfilePage myProfilePage;
+    @Autowired
     private SearchPage searchPage;
     @Autowired
     private SearchResultsPage searchResultsPage;
@@ -44,6 +46,11 @@ public class WebPageFactory {
     public MyBookingsPage getMyBookingsPage() {
         PageFactory.initElements(driver, myBookingsPage);
         return myBookingsPage;
+    }
+
+    public MyProfilePage getMyProfilePage() {
+        PageFactory.initElements(driver, myProfilePage);
+        return myProfilePage;
     }
 
     public SearchPage loadSearchPage() {
