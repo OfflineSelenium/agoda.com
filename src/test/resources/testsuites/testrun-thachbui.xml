@@ -6,35 +6,39 @@
     <test name="Agoda.com: Smarter Hotel Booking Smoke Test in firefox">
         <classes>
             <!--<class name="com.agoda.tests.LogInPageTest">-->
-                <!--<methods>-->
-                    <!--&lt;!&ndash;<include name="verifyLogInPassed"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailed"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedBlankEmail"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithInvalidEmail"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithBlankPassword"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithInvalidPassword"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithoutEmailPassword"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithEmailBlock"/>&ndash;&gt;-->
-                <!--</methods>-->
+            <!--<methods>-->
+            <!--&lt;!&ndash;<include name="verifyLogInPassed"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailed"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailedBlankEmail"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailedWithInvalidEmail"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailedWithBlankPassword"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailedWithInvalidPassword"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailedWithoutEmailPassword"/>&ndash;&gt;-->
+            <!--&lt;!&ndash;<include name="verifyLogInFailedWithEmailBlock"/>&ndash;&gt;-->
+            <!--</methods>-->
             <!--</class>-->
             <!--<class name="com.agoda.tests.SearchPageTest">-->
-                <!--<methods>-->
-                    <!--<include name="verifySearchWithDefaultUI"/>-->
-                    <!--<include name="verifySearchShowAutoComplete"/>-->
-                    <!--<include name="verifyAgodaPriceGuaranteeLink"/>-->
-                    <!--<include name="verifySearchWithNoResults"/>-->
-                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
-                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
-                    <!--<include name="verifySearchShowResultsFound"/>-->
-                <!--</methods>-->
+            <!--<methods>-->
+            <!--<include name="verifySearchWithDefaultUI"/>-->
+            <!--<include name="verifySearchShowAutoComplete"/>-->
+            <!--<include name="verifyAgodaPriceGuaranteeLink"/>-->
+            <!--<include name="verifySearchWithNoResults"/>-->
+            <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
+            <!--<include name="verifySearchWithSpecialCharacters"/>-->
+            <!--<include name="verifySearchShowResultsFound"/>-->
+            <!--</methods>-->
             <!--</class>-->
-            <class name="com.agoda.tests.MyBookingsPageTest">
+            <!--<class name="com.agoda.tests.MyBookingsPageTest">-->
+            <!--<methods>-->
+            <!--<include name="verifyEmailLoginShowCorrect"/>-->
+            <!--<include name="verifyShowTextHeader"/>-->
+            <!--</methods>-->
+            <!--</class>-->
+            <class name="com.agoda.tests.MyProfilePageTest">
                 <methods>
-                    <!--<include name="verifyEmailLoginShowCorrect"/>-->
-                    <include name="verifyShowTextHeader"/>
-                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
-                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
-                    <!--<include name="verifySearchShowResultsFound"/>-->
+                    <include name="verifyDefaultPageDisplayed"/>
+                    <include name="verifyUpdateInformationProfileIncorrect"/>
+                    <!--<include name="verifyUpdateInformationSuccessfully"/>-->
                 </methods>
             </class>
         </classes>

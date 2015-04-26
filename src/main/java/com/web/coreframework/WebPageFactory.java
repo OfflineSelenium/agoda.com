@@ -1,15 +1,12 @@
 package com.web.coreframework;
 
-import com.page.objects.SearchPage;
-import com.page.objects.SearchResultsPage;
+import com.page.objects.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.page.objects.LogInPage;
-import com.page.objects.MyBookingsPage;
 
 @Component
 public class WebPageFactory {
@@ -20,6 +17,8 @@ public class WebPageFactory {
     private LogInPage logInPage;
     @Autowired
     private MyBookingsPage myBookingsPage;
+    @Autowired
+    private MyProfilePage myProfilePage;
     @Autowired
     private SearchPage searchPage;
     @Autowired
@@ -45,6 +44,11 @@ public class WebPageFactory {
     public MyBookingsPage getMyBookingsPage() {
         PageFactory.initElements(driver, myBookingsPage);
         return myBookingsPage;
+    }
+
+    public MyProfilePage getMyProfilePage() {
+        PageFactory.initElements(driver, myProfilePage);
+        return myProfilePage;
     }
 
     public SearchPage loadSearchPage() {

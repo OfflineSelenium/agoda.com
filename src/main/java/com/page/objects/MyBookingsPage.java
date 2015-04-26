@@ -36,9 +36,6 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(id = "signin-btn")
     private WebElement signInButton;
 
-    @FindBy(xpath = "//a[.='Sign Out']")
-    private WebElement signOutOnTop;
-
     @FindBy(id = "ShowAddCardDivButton")
     private WebElement ShowAddCardDivButton;
 
@@ -71,6 +68,7 @@ public class MyBookingsPage extends GeneralPage {
 
     public MyBookingsPage clickMyCardDetails() {
         linkMyCardDetails.click();
+//        webElementFinder.waitElementLocatorLoaded(By.id("password"));
         return this;
     }
 
@@ -86,11 +84,6 @@ public class MyBookingsPage extends GeneralPage {
 
     public MyBookingsPage confirmLoginAgian(String password) {
         return enterPasswordAgian(password).clickSignIn();
-    }
-
-    public LogInPage clickSignOutOnTop() {
-        signOutOnTop.click();
-        return webPageFactory.getLogInPage();
     }
 
     public boolean verifyShouldDisplayAddNewCardButton() {
