@@ -1,5 +1,9 @@
 package com.page.objects;
 
+import com.web.coreframework.Common;
+import com.web.coreframework.WebElementFinder;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.springframework.stereotype.Component;
@@ -21,7 +25,16 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtSignOut")
     private WebElement signOut;
 
-    @FindBy(xpath = "//*[@id='ctl00_ctl00_MainContent_leftMenu1_udpMenu']//ul//li")
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
+    private WebElement myReviewsMenu;
+
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
+    private WebElement myProfileMenu;
+
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")
+    private WebElement myCardDetails;
+
+    @FindBy(xpath = "//div[@id='ctl00_ctl00_MainContent_leftMenu1_udpMenu']//ul//li")
     private List<WebElement> panelItems;
 
     @FindBy(xpath = "//*[contains(@class,'header')]//h1")
@@ -29,6 +42,12 @@ public class MyBookingsPage extends GeneralPage {
 
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")
     private WebElement linkMyCardDetails;
+
+    @FindBy(id = "password")
+    private WebElement enterPassWord;
+
+    @FindBy(id = "signin-btn")
+    private WebElement signInButton;
 
     @FindBy(xpath = "//a[.='Sign Out']")
     private WebElement signOutOnTop;
@@ -49,8 +68,13 @@ public class MyBookingsPage extends GeneralPage {
         return webPageFactory.getLogInPage();
     }
 
+    public void clickMyReviewsMenu() {
+        myReviewsMenu.click();
+    }
+
+   
     public boolean shouldDisplayEmailLogin(String text) {
-        String xpath = "//*[contains(@class,'account_email')]";
+        String xpath = "//div[@class= 'account_email']";
         WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
         return element.getText().equals(text);
     }
@@ -93,7 +117,18 @@ public class MyBookingsPage extends GeneralPage {
         WebElement element = webElementFinder.findElementByLocatorID(id);
         return element.isDisplayed();
     }
+	
+  public String shouldSeeUpComing() {
+        String xpath = "//a[@id='ctl00_ctl00_MainContent_ContentMain_lbtUpcomingBooking']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
 
+  public String shouldSeeDeparted() {
+        String xpath = "//a[@id = 'ctl00_ctl00_MainContent_ContentMain_lbtDepartBooking']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
     public boolean defaultValueOfCheckboxShouldUncheck() {
         String id = "KeepCard";
         boolean isSelected = webElementFinder.findElementByLocatorID(id).isSelected();
@@ -101,6 +136,26 @@ public class MyBookingsPage extends GeneralPage {
             return true;
         }
         return false;
+    }
+	
+	 public String shouldSeeCancelled() {
+        String xpath = "//a[@id='ctl00_ctl00_MainContent_ContentMain_lbtCancelledBooking']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
+
+    public String shouldDisplayEmailLoginText() {
+        String xpath = "//div[@class= 'account_email']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        return element.getText();
+    }
+
+
+    public String shouldSeeNameColor() {
+        String xpath = "//div/p[@class = 'text_account']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        String col = element.getCssValue("color");
+        return Common.convertToHex(col);
     }
 }
 
