@@ -31,7 +31,11 @@
             <class name="com.agoda.tests.MyBookingsPageTest">
                 <methods>
                     <include name="verifyEmailLoginShowCorrect"/>
-                    <!--<include name="verifyShowTextHeader"/>-->
+                    <include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>
+                    <include name="VerifyDefaultMyReviewPage"/>
+                    <include name="VerifyDefaultMyProfilePage"/>
+                    <include name="verifyButtonSaveDisplay"/>
+                    <include name="verifyCheckboxDefault"/>
                 </methods>
             </class>
         </classes>
