@@ -25,7 +25,7 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
     private WebElement myReviewsMenu;
 
-    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyReview")
+    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyProfile")
     private WebElement myProfileMenu;
 
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")

@@ -82,8 +82,8 @@ public class MyBookingsPageTest extends BasePage {
     @Test(description = "Verify Default MyProfile Page")
     public void VerifyDefaultMyProfilePage() {
         myBookingsPage.clickMyProfileMenu();
-        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), "Test Agoda");
-        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), "test.secude@gmail.com");
+        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), "Mr. Test A ");
+        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), "testt@gmail.com");
     }
 
     @Test(description = "Verify button Save displayed")

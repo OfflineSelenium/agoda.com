@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Agoda.com: Smarter Hotel Booking Smoke Test Suite">
+<suite name="Agoda.com: Smarter Hotel Booking Regression Test Suite">
 
     <parameter name="testdata.filename" value="testdata.properties"/>
 
-    <test name="Agoda.com: Smarter Hotel Booking Smoke Test in firefox">
+    <test name="Agoda.com: Smarter Hotel Booking Regression Test in firefox">
         <classes>
-            <!--<class name="com.agoda.tests.LogInPageTest">-->
-                <!--<methods>-->
-                    <!--&lt;!&ndash;<include name="verifyLogInPassed"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailed"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedBlankEmail"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithInvalidEmail"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithBlankPassword"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithInvalidPassword"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithoutEmailPassword"/>&ndash;&gt;-->
-                    <!--&lt;!&ndash;<include name="verifyLogInFailedWithEmailBlock"/>&ndash;&gt;-->
-                <!--</methods>-->
-            <!--</class>-->
-            <!--<class name="com.agoda.tests.SearchPageTest">-->
-                <!--<methods>-->
-                    <!--<include name="verifySearchWithDefaultUI"/>-->
-                    <!--<include name="verifySearchShowAutoComplete"/>-->
-                    <!--<include name="verifyAgodaPriceGuaranteeLink"/>-->
-                    <!--<include name="verifySearchWithNoResults"/>-->
-                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
-                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
-                    <!--<include name="verifySearchShowResultsFound"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+            <class name="com.agoda.tests.LogInPageTest">
+                <methods>
+                    <include name="verifyLogInPassed"/>
+                    <include name="verifyLogInFailed"/>
+                    <include name="verifyLogInFailedBlankEmail"/>
+                    <include name="verifyLogInFailedWithInvalidEmail"/>
+                    <include name="verifyLogInFailedWithBlankPassword"/>
+                    <include name="verifyLogInFailedWithInvalidPassword"/>
+                    <include name="verifyLogInFailedWithoutEmailPassword"/>
+                    <include name="verifyLogInFailedWithEmailBlock"/>
+                </methods>
+            </class>
+            <class name="com.agoda.tests.SearchPageTest">
+                <methods>
+                    <include name="verifySearchWithDefaultUI"/>
+                    <include name="verifySearchShowAutoComplete"/>
+                    <include name="verifyAgodaPriceGuaranteeLink"/>
+                    <include name="verifySearchWithNoResults"/>
+                    <include name="verifySearchWithEmptyValueSearchInput"/>
+                    <include name="verifySearchWithSpecialCharacters"/>
+                    <include name="verifySearchShowResultsFound"/>
+                </methods>
+            </class>
             <class name="com.agoda.tests.MyBookingsPageTest">
                 <methods>
-                    <!--<include name="verifyEmailLoginShowCorrect"/>-->
-                    <include name="verifyShowTextHeader"/>
-                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
-                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
-                    <!--<include name="verifySearchShowResultsFound"/>-->
+                    <include name="verifyEmailLoginShowCorrect"/>
+                    <include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>
+                    <include name="VerifyDefaultMyReviewPage"/>
+                    <include name="VerifyDefaultMyProfilePage"/>
+                    <include name="verifyButtonSaveDisplay"/>
+                    <include name="verifyCheckboxDefault"/>
                 </methods>
             </class>
         </classes>

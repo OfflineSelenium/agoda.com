@@ -5,37 +5,37 @@
 
     <test name="Agoda.com: Smarter Hotel Booking Regression Test in firefox">
         <classes>
-            <!--<class name="com.agoda.tests.LogInPageTest">-->
-                <!--<methods>-->
-                    <!--<include name="verifyLogInPassed"/>-->
-                    <!--<include name="verifyLogInFailed"/>-->
-                    <!--<include name="verifyLogInFailedBlankEmail"/>-->
-                    <!--<include name="verifyLogInFailedWithInvalidEmail"/>-->
-                    <!--<include name="verifyLogInFailedWithBlankPassword"/>-->
-                    <!--<include name="verifyLogInFailedWithInvalidPassword"/>-->
-                    <!--<include name="verifyLogInFailedWithoutEmailPassword"/>-->
-                    <!--<include name="verifyLogInFailedWithEmailBlock"/>-->
-                <!--</methods>-->
-            <!--</class>-->
-            <!--<class name="com.agoda.tests.SearchPageTest">-->
-                <!--<methods>-->
-                    <!--<include name="verifySearchWithDefaultUI"/>-->
-                    <!--<include name="verifySearchShowAutoComplete"/>-->
-                    <!--<include name="verifyAgodaPriceGuaranteeLink"/>-->
-                    <!--<include name="verifySearchWithNoResults"/>-->
-                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
-                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
-                    <!--<include name="verifySearchShowResultsFound"/>-->
-                <!--</methods>-->
-            <!--</class>-->
+            <class name="com.agoda.tests.LogInPageTest">
+                <methods>
+                    <include name="verifyLogInPassed"/>
+                    <include name="verifyLogInFailed"/>
+                    <include name="verifyLogInFailedBlankEmail"/>
+                    <include name="verifyLogInFailedWithInvalidEmail"/>
+                    <include name="verifyLogInFailedWithBlankPassword"/>
+                    <include name="verifyLogInFailedWithInvalidPassword"/>
+                    <include name="verifyLogInFailedWithoutEmailPassword"/>
+                    <include name="verifyLogInFailedWithEmailBlock"/>
+                </methods>
+            </class>
+            <class name="com.agoda.tests.SearchPageTest">
+                <methods>
+                    <include name="verifySearchWithDefaultUI"/>
+                    <include name="verifySearchShowAutoComplete"/>
+                    <include name="verifyAgodaPriceGuaranteeLink"/>
+                    <include name="verifySearchWithNoResults"/>
+                    <include name="verifySearchWithEmptyValueSearchInput"/>
+                    <include name="verifySearchWithSpecialCharacters"/>
+                    <include name="verifySearchShowResultsFound"/>
+                </methods>
+            </class>
             <class name="com.agoda.tests.MyBookingsPageTest">
                 <methods>
                     <include name="verifyEmailLoginShowCorrect"/>
-                    <!--<include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>-->
-                    <!--<include name="VerifyDefaultMyReviewPage"/>-->
-                    <!--<include name="VerifyDefaultMyProfilePage"/>-->
-                    <!--<include name="verifyButtonSaveDisplay"/>-->
-                    <!--<include name="verifyCheckboxDefault"/>-->
+                    <include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>
+                    <include name="VerifyDefaultMyReviewPage"/>
+                    <include name="VerifyDefaultMyProfilePage"/>
+                    <include name="verifyButtonSaveDisplay"/>
+                    <include name="verifyCheckboxDefault"/>
                 </methods>
             </class>
         </classes>
