@@ -30,26 +30,17 @@ public class MyBookingsPage extends GeneralPage {
     @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyCreditCards")
     private WebElement linkMyCardDetails;
 
-    @FindBy(id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyProfile")
-    private WebElement linkMyProfile;
-
-    @FindBy(id = "lbtEditBasicInfo")
-    private WebElement linkEditInformation;
-
-    @FindBy(id = "lbtSaveBasicInfo")
-    private WebElement linkSaveInformation;
-
     @FindBy(id = "password")
     private WebElement enterPassWord;
 
     @FindBy(id = "signin-btn")
     private WebElement signInButton;
 
+    @FindBy(xpath = "//a[.='Sign Out']")
+    private WebElement signOutOnTop;
+
     @FindBy(id = "ShowAddCardDivButton")
     private WebElement ShowAddCardDivButton;
-
-    @FindBy(id = "ddlCountryOfPassport")
-    private WebElement ChooseCountry;
 
     public void load() {
         loadPage("/rewards/managebooking.html");
@@ -78,24 +69,8 @@ public class MyBookingsPage extends GeneralPage {
         return textHeader.getText().equals(text);
     }
 
-    public MyBookingsPage clickMyProfile() {
-        linkMyProfile.click();
-        return this;
-    }
-
     public MyBookingsPage clickMyCardDetails() {
         linkMyCardDetails.click();
-//        webElementFinder.waitElementLocatorLoaded(By.id("password"));
-        return this;
-    }
-
-    public MyBookingsPage clickLinkEditInformation() {
-        linkEditInformation.click();
-        return this;
-    }
-
-    public MyBookingsPage clickLinkSaveInformation() {
-        linkSaveInformation.click();
         return this;
     }
 
@@ -113,29 +88,13 @@ public class MyBookingsPage extends GeneralPage {
         return enterPasswordAgian(password).clickSignIn();
     }
 
+    public LogInPage clickSignOutOnTop() {
+        signOutOnTop.click();
+        return webPageFactory.getLogInPage();
+    }
+
     public boolean verifyShouldDisplayAddNewCardButton() {
         return ShowAddCardDivButton.isDisplayed();
-    }
-
-    public Boolean shouldSeeTextNotificationError(String text) {
-        String xpath = "//*[@id='basicSummaryError']/ul/li[1]";
-        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
-        return element.getText().equals(text);
-    }
-
-    public MyBookingsPage chooseCountryOfPassport(String country) {
-        ChooseCountry.sendKeys(country);
-        return this;
-    }
-
-    public String shouldSeeTextSelectedCountryDropdown() {
-//        String css = "select#ddlCountryOfPassport option[value='199']";
-        String xpath = "//select[@id='ddlCountryOfPassport']/option[@selected='selected']";
-        return webElementFinder.findElementByLocatorXPath(xpath).getText();
-    }
-
-    public String shouldSeeTextBasicInformationUpdateSuccessfully() {
-        return webElementFinder.findElementByLocatorXPath("//span[contains(@class,'text_green')]").getText();
     }
 }
 
