@@ -45,7 +45,7 @@ public class LogInPage extends GeneralPage {
         return this;
     }
 
-    public String shouldSeeTextEmailPasswordError() {
+    public String shouldSeeTextErrorEmailPasswordIsIncorrect() {
         return findElementByLocator("notification_sign_in").getText();
     }
 
@@ -53,7 +53,7 @@ public class LogInPage extends GeneralPage {
         return enterEmail(email).enterPassword(password).clickSignInPassed();
     }
 
-    public boolean shouldSeeTextEmailValidation(String text) {
+    public boolean shouldSeeTextErrorEmailIsRequired(String text) {
         String id = "ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvEmail";
         WebElement element = webElementFinder.findElementByLocatorID(id);
 
@@ -64,12 +64,11 @@ public class LogInPage extends GeneralPage {
         return Common.convertToHex(color).equals("#ff0000");
     }
 
-    public String shouldSeeTextEmailError() {
+    public String shouldSeeTextErrorEmailIsInvalid() {
         return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_revEmail").getText();
     }
 
-    public String shouldSeeTextPasswordError() {
+    public String shouldSeeTextErrorPasswordIsRequired() {
         return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvPassword").getText();
     }
-
 }
