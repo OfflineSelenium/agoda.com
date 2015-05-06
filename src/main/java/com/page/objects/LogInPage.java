@@ -71,5 +71,4 @@ public class LogInPage extends GeneralPage {
     public String shouldSeeTextErrorPasswordIsRequired() {
         return findElementByLocator("ctl00_ctl00_MainContent_ContentMain_RewardLogin1_rfvPassword").getText();
     }
-
 }

@@ -127,5 +127,4 @@ public class LogInPageTest extends BasePage {
         //Verify the displayed message
         Assert.assertEquals(logInPage.shouldSeeTextErrorEmailPasswordIsIncorrect(), ERROR_MSG_WRONG_EMAIL_PASS);
     }
-
 }
