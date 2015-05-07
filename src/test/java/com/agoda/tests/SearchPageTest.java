@@ -2,9 +2,7 @@ package com.agoda.tests;
 
 import com.page.objects.SearchPage;
 import com.page.objects.SearchResultsPage;
-import com.web.coreframework.Common;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,6 +13,10 @@ public class SearchPageTest extends BasePage {
     private SearchResultsPage searchResultsPage;
 
     private String SEARCH_QUERY_1;
+    private String SEARCH_QUERY_2;
+    private String SEARCH_QUERY_3;
+    private String AFTER_SEARCH_QUERY_3;
+    private String SEARCH_QUERY_4;
     private final String COLOR_BLUE = "#0283df";
 
     @BeforeClass
@@ -22,6 +24,10 @@ public class SearchPageTest extends BasePage {
         searchPage = webPageFactory.loadSearchPage();
 
         SEARCH_QUERY_1 = testData.getProperty("searchQuery1");
+        SEARCH_QUERY_2 = testData.getProperty("searchQuery2");
+        SEARCH_QUERY_3 = testData.getProperty("searchQuery3");
+        AFTER_SEARCH_QUERY_3 = testData.getProperty("queryAfterSearch");
+        SEARCH_QUERY_4 = testData.getProperty("searchQuery4");
     }
 
     @BeforeMethod
@@ -61,8 +67,7 @@ public class SearchPageTest extends BasePage {
 
     @Test(description = "Search-NoResults")
     public void verifySearchWithNoResults() {
-        String query = "bong da tivi";
-        searchResultsPage = searchPage.enterSearchQuery(query)
+        searchResultsPage = searchPage.enterSearchQuery(SEARCH_QUERY_2)
                                       .chooseDay("Thu 12")
                                       .chooseMonthYear("Feb, 2015")
                                       .chooseDataPicker()
@@ -70,7 +75,7 @@ public class SearchPageTest extends BasePage {
                                       .chooseDatePickerCheckOut()
                                       .clickSearchButtonShowResultsPage();
 
-        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", query));
+        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", SEARCH_QUERY_2));
     }
 
     @Test(description = "Search-EmptyValueInput")
@@ -83,9 +88,7 @@ public class SearchPageTest extends BasePage {
 
     @Test(description = "Search-NumberSpecialCharacter")
     public void verifySearchWithSpecialCharacters() {
-        String query = "123@#$hanoi";
-        String queryAfterSearch = "123hanoi";
-        searchResultsPage = searchPage.enterSearchQuery(query)
+        searchResultsPage = searchPage.enterSearchQuery(SEARCH_QUERY_3)
                                       .chooseDay("Thu 12")
                                       .chooseMonthYear("Feb, 2015")
                                       .chooseDataPicker()
@@ -93,15 +96,14 @@ public class SearchPageTest extends BasePage {
                                       .chooseDatePickerCheckOut()
                                       .clickSearchButtonShowResultsPage();
 
-        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", queryAfterSearch));
+        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your Search for %s had 0 results.", AFTER_SEARCH_QUERY_3));
     }
 
     @Test(description = "Search-ResultsFound")
     public void verifySearchShowResultsFound() {
-        String query = "ho chi minh";
-        searchResultsPage = searchPage.searchWithQuery(query);
+        searchResultsPage = searchPage.searchWithQuery(SEARCH_QUERY_4);
 
-        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your search for %s matched the following...", query));
+        Assert.assertEquals(searchResultsPage.shouldSeeTextSearchResultMessage(), String.format("Your search for %s matched the following...", SEARCH_QUERY_4));
         Assert.assertEquals(searchResultsPage.shouldSeeColorSearchQuery(), COLOR_BLUE);
     }
 

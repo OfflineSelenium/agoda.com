@@ -16,11 +16,17 @@ public class MyProfilePageTest extends BasePage {
 
     private String EMAIL1;
     private String PASSWORD;
+    private String EDIT_COUNTRY;
+    private String OLD_COUNTRY;
+    private String EMAIL4;
 
     @BeforeClass
     public void beforeClass() {
         EMAIL1 = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
+        EDIT_COUNTRY = testData.getProperty("editCountry");
+        OLD_COUNTRY = testData.getProperty("oldCountry");
+        EMAIL4 = testData.getProperty("email4");
 
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
@@ -61,23 +67,23 @@ public class MyProfilePageTest extends BasePage {
     public void verifyUpdateInformationSuccessfully() {
         myProfilePage.clickMyProfile()
                      .clickLinkEditInformation()
-                     .editEmail("test_selenium@gmail.com")
-//                   .chooseCountryOfPassport("Vietnam")
-                     .selectTheCheckbox()
+                     .editEmail(EMAIL4)
+                     .chooseCountryOfPassport(EDIT_COUNTRY)
+//                     .selectTheCheckbox()
                      .clickLinkSaveInformation();
 
         //verify information has been changed
-//        Assert.assertEquals(myProfilePage.shouldSeeTextCountry(), "Vietnam");
+        Assert.assertEquals(myProfilePage.shouldSeeTextCountry(), EDIT_COUNTRY);
         Assert.assertEquals(myProfilePage.shouldSeeTextBasicInformationUpdateSuccessfully(), "Your Basic Information has been changed successfully.");
-        Assert.assertEquals(myProfilePage.shouldSeeTextEmailEdit(), "test_selenium@gmail.com");
-        Assert.assertTrue(myProfilePage.shouldSeeTextCheckboxSelected("Business travelers, Couples, Solo travelers"));
+        Assert.assertEquals(myProfilePage.shouldSeeTextEmailEdit(), EMAIL4);
+//        Assert.assertTrue(myProfilePage.shouldSeeTextCheckboxSelected("Business travelers, Couples, Solo travelers"));
 
 //      //Clean up data
         myProfilePage.clickMyProfile()
                      .clickLinkEditInformation()
-                     .editEmail("testt@gmail.com")
-//                   .chooseCountryOfPassport("United Kingdom")
-                     .deSelectTheCheckbox()
+                     .editEmail(EMAIL1)
+                   .chooseCountryOfPassport(OLD_COUNTRY)
+//                     .deSelectTheCheckbox()
                      .clickLinkSaveInformation();
     }
 }

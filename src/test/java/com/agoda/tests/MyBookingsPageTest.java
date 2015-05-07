@@ -16,12 +16,14 @@ public class MyBookingsPageTest extends BasePage {
 
     private String EMAIL1;
     private String PASSWORD;
+    private String PROFILE_NAME;
     private final String COLOR_BLUE = "#0283df";
 
     @BeforeClass
     public void beforeClass() {
         EMAIL1 = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
+        PROFILE_NAME = testData.getProperty("profileName");
 
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
@@ -55,7 +57,7 @@ public class MyBookingsPageTest extends BasePage {
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(6), "Sign Out");
     }
 
-    @Test(description = "My Bookings-NoCriteriaData-VerifyDedaultPageDisplayed")
+    @Test(description = "My Bookings-No Criteria Data-Verify Default Page Displayed")
     public void verifyDefaultMyBookingsPageDisplayWithNoCriteriaData() {
         Assert.assertEquals(myBookingsPage.shouldSeeNameColor(), COLOR_BLUE);
         Assert.assertEquals(myBookingsPage.shouldDisplayEmailLoginText(), EMAIL1);
@@ -82,8 +84,8 @@ public class MyBookingsPageTest extends BasePage {
     @Test(description = "Verify Default MyProfile Page")
     public void VerifyDefaultMyProfilePage() {
         myBookingsPage.clickMyProfileMenu();
-        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), "Mr. Test A ");
-        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), "testt@gmail.com");
+        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), PROFILE_NAME + " ");
+        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), EMAIL1);
     }
 
     @Test(description = "Verify button Save displayed")

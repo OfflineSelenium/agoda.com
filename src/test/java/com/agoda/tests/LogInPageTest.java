@@ -77,7 +77,7 @@ public class LogInPageTest extends BasePage {
                  .clickSignInFailed();
 
         // Verify the error message displayed
-        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation("Email Address is required."));
+        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation(ERROR_MSG_REQUIRED_EMAIL));
     }
 
     @Test(description = "Login-Failure-InvalidEmail")
@@ -114,7 +114,7 @@ public class LogInPageTest extends BasePage {
         logInPage.clickSignInFailed();
 
         //Verify the displayed message
-        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation("Email Address is required."));
+        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation(ERROR_MSG_REQUIRED_EMAIL));
         Assert.assertEquals(logInPage.shouldSeeTextPasswordError(), ERROR_MSG_WRONG_PASS);
     }
 
