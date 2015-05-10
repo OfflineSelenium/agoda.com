@@ -3,6 +3,7 @@ package com.agoda.tests;
 import com.page.objects.LogInPage;
 import com.page.objects.MyBookingsPage;
 import com.page.objects.MyProfilePage;
+import com.web.coreframework.Common;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -15,12 +16,22 @@ public class MyProfilePageTest extends BasePage {
     private MyBookingsPage myBookingsPage;
 
     private String EMAIL1;
+    private String EMAIL4;
     private String PASSWORD;
+    private String GENDER;
+    private String COUNTRY;
+    private String LANGUAGE;
+    private String PHONE;
 
     @BeforeClass
     public void beforeClass() {
         EMAIL1 = testData.getProperty("email1");
+        EMAIL4 = testData.getProperty("email4");
         PASSWORD = testData.getProperty("password");
+        GENDER = testData.getProperty("gender");
+        COUNTRY = testData.getProperty("country");
+        LANGUAGE = testData.getProperty("language");
+        PHONE = testData.getProperty("phone");
 
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
@@ -79,5 +90,19 @@ public class MyProfilePageTest extends BasePage {
 //                   .chooseCountryOfPassport("United Kingdom")
                      .deSelectTheCheckbox()
                      .clickLinkSaveInformation();
+    }
+    @Test
+    public void verifyEditInformationSuccessfully() {
+        myProfilePage.clickMyProfile()
+                .clickLinkEditInformation()
+                .shouldChooseGenderName(GENDER)
+                .editEmail(EMAIL4)
+                .shouldChooseDatePicker("5")
+                .chooseCountryOfPassport(COUNTRY)
+                .shouldChooseLanguage(LANGUAGE)
+                .deSelectTheCheckbox()
+                .shouldSelectTheCheckbox()
+                .shouldEnterMobilePhoneNumber(PHONE)
+                .clickLinkSaveInformation();
     }
 }
