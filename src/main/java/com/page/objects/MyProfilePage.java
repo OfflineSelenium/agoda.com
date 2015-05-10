@@ -28,6 +28,18 @@ public class MyProfilePage extends GeneralPage {
     @FindBy(id = "txtEmail")
     private WebElement inputEmail;
 
+    @FindBy(id = "ddlLanguage")
+    private WebElement language;
+
+    @FindBy(id = "txtPhone")
+    private WebElement phone;
+
+    @FindBy(className = "ui-datepicker-trigger")
+    private WebElement datepicker;
+
+    @FindBy(id = "ddlTitle")
+    private WebElement gendername;
+
     public void load() {
         loadPage("/rewards/profile.html");
     }
@@ -122,10 +134,48 @@ public class MyProfilePage extends GeneralPage {
 //            return false;
 //    }
 
-    public Boolean shouldSeeTextCheckboxSelected(String text){
+    public Boolean shouldSeeTextCheckboxSelected(String text) {
         String xpath = "//div[@class='info_right']";
         WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
         return element.getText().equals(text);
+    }
+
+    public MyProfilePage shouldChooseGenderName(String gender) {
+        gendername.sendKeys(gender);
+        return this;
+    }
+
+    public MyProfilePage shouldChooseDatePicker(String date) {
+        datepicker.click();
+        String xpath = "//a[@class ='ui-state-default']";
+        WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
+        element.sendKeys(date);
+        return this;
+    }
+
+    public MyProfilePage shouldChooseLanguage(String lang) {
+        language.sendKeys(lang);
+        return this;
+    }
+
+    public MyProfilePage shouldEnterMobilePhoneNumber(String phonenumber) {
+        phone.clear();
+        phone.sendKeys(phonenumber);
+        return this;
+    }
+
+    public MyProfilePage shouldSelectTheCheckbox() {
+
+        String xpath = "//table[@id='cblTravelerTypeList']//input[@type='checkbox']";
+        List<WebElement> cks = webElementFinder.findElementsByLocatorXPath(xpath);
+        int i = 0;
+        if (i <= cks.size() - 3)
+            for (WebElement element : cks) {
+                if (element.isSelected())
+                    element.click();
+            }
+        i++;
+        return this;
     }
 }
 
