@@ -28,6 +28,15 @@ public class MyProfilePage extends GeneralPage {
     @FindBy(id = "txtEmail")
     private WebElement inputEmail;
 
+    @FindBy(id = "lbtEditMailing")
+    private WebElement linkEditMailing;
+
+    @FindBy(id = "ddlMailingCountry")
+    private WebElement cbMailingCountry;
+
+    @FindBy(id = "lbtSaveMailing")
+    private WebElement linkSaveMailingAddress;
+
     public void load() {
         loadPage("/rewards/profile.html");
     }
@@ -126,6 +135,27 @@ public class MyProfilePage extends GeneralPage {
         String xpath = "//div[@class='info_right']";
         WebElement element = webElementFinder.findElementByLocatorXPath(xpath);
         return element.getText().equals(text);
+    }
+
+    public MyProfilePage clickLinkEditAddress() {
+        linkEditMailing.click();
+        Common.sleep(5000);
+        return this;
+    }
+
+    public MyProfilePage chooseMailingCountry(String country) {
+        cbMailingCountry.sendKeys(country);
+        return this;
+    }
+
+    public MyProfilePage clickLinkSaveMailingAddress() {
+        linkSaveMailingAddress.click();
+        Common.sleep(5000);
+        return this;
+    }
+
+    public boolean shouldSeeTextMailingAddressEditSuccessfully(String text) {
+        return webElementFinder.findElementByLocatorCSS("#divSaveMaillingCompleted .text_green").getText().equals(text);
     }
 }
 

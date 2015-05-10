@@ -16,11 +16,13 @@ public class MyProfilePageTest extends BasePage {
 
     private String EMAIL1;
     private String PASSWORD;
+    private String EDIT_MAILING_ADDRESS_SUCCESS_MSG;
 
     @BeforeClass
     public void beforeClass() {
         EMAIL1 = testData.getProperty("email1");
         PASSWORD = testData.getProperty("password");
+        EDIT_MAILING_ADDRESS_SUCCESS_MSG = testData.getProperty("successMsg.EditMailingAddress");
 
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
@@ -79,5 +81,16 @@ public class MyProfilePageTest extends BasePage {
 //                   .chooseCountryOfPassport("United Kingdom")
                      .deSelectTheCheckbox()
                      .clickLinkSaveInformation();
+    }
+
+    @Test(description = "verify Edit Mailing Successfully")
+    public void verifyEditMailingAddressSuccessfully(){
+        myProfilePage.clickMyProfile()
+                     .clickLinkEditAddress()
+                     .chooseMailingCountry("United States")
+                     .clickLinkSaveMailingAddress();
+
+        //Verify the displayed edit mailing address success message
+        Assert.assertTrue(myProfilePage.shouldSeeTextMailingAddressEditSuccessfully(EDIT_MAILING_ADDRESS_SUCCESS_MSG));
     }
 }
