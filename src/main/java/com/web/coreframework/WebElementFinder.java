@@ -58,4 +58,13 @@ public class WebElementFinder {
         }
     }
 
+    public WebElement findElementByLocatorClassName(String classname) {
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, 10);
+            return wait.until(ExpectedConditions.visibilityOfElementLocated(By.className(classname)));
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }
