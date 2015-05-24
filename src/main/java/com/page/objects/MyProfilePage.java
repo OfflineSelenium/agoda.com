@@ -96,10 +96,10 @@ public class MyProfilePage extends GeneralPage {
         return this;
     }
 
-    public String shouldSeeTextEmailEdit() {
-        String xpath = "//p[@class='info_right'][2]";
-        return webElementFinder.findElementByLocatorXPath(xpath).getText();
-    }
+//    public String shouldSeeTextEmailEdit() {
+//        String xpath = "//p[@class='info_right'][2]";
+//        return webElementFinder.findElementByLocatorXPath(xpath).getText();
+//    }
 
     public MyProfilePage selectTheCheckbox() {
         String xpath = "//table[@id='cblTravelerTypeList']//input[@type='checkbox']";
@@ -141,7 +141,9 @@ public class MyProfilePage extends GeneralPage {
     }
 
     public MyProfilePage shouldChooseGenderName(String gender) {
-        gendername.sendKeys(gender);
+        String id = "ddlTitle";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.sendKeys(gender);
         return this;
     }
 
@@ -159,8 +161,10 @@ public class MyProfilePage extends GeneralPage {
     }
 
     public MyProfilePage shouldEnterMobilePhoneNumber(String phonenumber) {
-        phone.clear();
-        phone.sendKeys(phonenumber);
+        String id = "txtPhone";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.clear();
+        element.sendKeys(phonenumber);
         return this;
     }
 
@@ -177,6 +181,86 @@ public class MyProfilePage extends GeneralPage {
         i++;
         return this;
     }
+
+    public MyProfilePage shouldChooseCountryPassport(String country) {
+        String id = "ddlCountryOfPassport";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.sendKeys(country);
+        return this;
+    }
+
+    public MyProfilePage shouldEditLanguage(String language) {
+        String id = "ddlLanguage";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.sendKeys(language);
+        return this;
+    }
+
+    public MyProfilePage clickSaveAllInformation() {
+        String id = "lbtSaveBasicInfo";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.click();
+        return this;
+    }
+
+    public MyProfilePage shouldClickLinkEditInformation() {
+        String id = "lbtEditBasicInfo";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.click();
+        return this;
+    }
+
+    public String shouldSeeEditedName() {
+        String xpath = "//p[@class ='info_right'][1]";
+        List<WebElement> elements = webElementFinder.findElementsByLocatorXPath(xpath);
+        return elements.get(0).getText();
+    }
+
+    public String shouldSeeEditedEmail() {
+        String xpath = "//p[@class='info_right'][2]";
+        List<WebElement> elm = webElementFinder.findElementsByLocatorXPath(xpath);
+        return elm.get(0).getText();
+    }
+
+    public String shouldSeeEditedLanguage() {
+        String xpath = "//p[@class='info_right'][5]";
+        List<WebElement> elements = webElementFinder.findElementsByLocatorXPath(xpath);
+        return elements.get(0).getText();
+    }
+
+    public String shouldSeeCountryPassport() {
+        String xpath = "//p[@class='info_right'][4]";
+        List<WebElement> elements = webElementFinder.findElementsByLocatorXPath(xpath);
+        return elements.get(0).getText();
+    }
+
+    public MyProfilePage shouldClickMyProfile() {
+        String id = "ctl00_ctl00_MainContent_leftMenu1_lbtMyProfile";
+        WebElement element = webElementFinder.findElementByLocatorID(id);
+        element.click();
+        return this;
+    }
+
+    public String shouldSeeSuccessNotify() {
+        String classname = "text_green";
+        WebElement elements = webElementFinder.findElementByLocatorClassName(classname);
+        return elements.getText();
+    }
+
+    public String shouldSeeTextColor() {
+        String classname = "text_green";
+        WebElement element = webElementFinder.findElementByLocatorClassName(classname);
+        String color = element.getCssValue("color");
+        return Common.convertToHex(color);
+    }
+
+    public String shouldSeeBackgroundColor() {
+        String classname = "success_info";
+        WebElement element = webElementFinder.findElementByLocatorClassName(classname);
+        String color = element.getCssValue("background-color");
+        return Common.convertToHex(color);
+    }
+
 }
 
 
