@@ -3,7 +3,6 @@ package com.agoda.tests;
 import com.page.objects.LogInPage;
 import com.page.objects.MyBookingsPage;
 import com.page.objects.MyProfilePage;
-import com.web.coreframework.Common;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -22,6 +21,7 @@ public class MyProfilePageTest extends BasePage {
     private String COUNTRY;
     private String LANGUAGE;
     private String PHONE;
+    private String EDIT_MAILING_ADDRESS_SUCCESS_MSG;
 
     @BeforeClass
     public void beforeClass() {
@@ -32,6 +32,7 @@ public class MyProfilePageTest extends BasePage {
         COUNTRY = testData.getProperty("country");
         LANGUAGE = testData.getProperty("language");
         PHONE = testData.getProperty("phone");
+        EDIT_MAILING_ADDRESS_SUCCESS_MSG = testData.getProperty("successMsg.EditMailingAddress");
 
         logInPage = webPageFactory.loadLogInPage();
         myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
@@ -61,9 +62,9 @@ public class MyProfilePageTest extends BasePage {
     @Test(description = "verify Update Information Profile Incorrect")
     public void verifyUpdateInformationProfileIncorrect() {
         myProfilePage.clickMyProfile()
-                     .clickLinkEditInformation()
-                     .chooseCountryOfPassport("Please Select")
-                     .clickLinkSaveInformation();
+                .clickLinkEditInformation()
+                .chooseCountryOfPassport("Please Select")
+                .clickLinkSaveInformation();
 
         Assert.assertTrue(myProfilePage.shouldSeeTextNotificationError("Basic Information is incorrect."));
     }
@@ -71,11 +72,11 @@ public class MyProfilePageTest extends BasePage {
     @Test(description = "verify Update Information Successfully")
     public void verifyUpdateInformationSuccessfully() {
         myProfilePage.clickMyProfile()
-                     .clickLinkEditInformation()
-                     .editEmail("test_selenium@gmail.com")
+                .clickLinkEditInformation()
+                .editEmail("test_selenium@gmail.com")
 //                   .chooseCountryOfPassport("Vietnam")
-                     .selectTheCheckbox()
-                     .clickLinkSaveInformation();
+                .selectTheCheckbox()
+                .clickLinkSaveInformation();
 
         //verify information has been changed
 //        Assert.assertEquals(myProfilePage.shouldSeeTextCountry(), "Vietnam");
@@ -85,12 +86,13 @@ public class MyProfilePageTest extends BasePage {
 
 //      //Clean up data
         myProfilePage.clickMyProfile()
-                     .clickLinkEditInformation()
-                     .editEmail("testt@gmail.com")
+                .clickLinkEditInformation()
+                .editEmail("testt@gmail.com")
 //                   .chooseCountryOfPassport("United Kingdom")
-                     .deSelectTheCheckbox()
-                     .clickLinkSaveInformation();
+                .deSelectTheCheckbox()
+                .clickLinkSaveInformation();
     }
+
     @Test
     public void verifyEditInformationSuccessfully() {
         myProfilePage.clickMyProfile()
@@ -105,4 +107,16 @@ public class MyProfilePageTest extends BasePage {
                 .shouldEnterMobilePhoneNumber(PHONE)
                 .clickLinkSaveInformation();
     }
+
+    @Test(description = "verify Edit Mailing Successfully")
+    public void verifyEditMailingAddressSuccessfully() {
+        myProfilePage.clickMyProfile()
+                .clickLinkEditAddress()
+                .chooseMailingCountry("United States")
+                .clickLinkSaveMailingAddress();
+
+        //Verify the displayed edit mailing address success message
+        Assert.assertTrue(myProfilePage.shouldSeeTextMailingAddressEditSuccessfully(EDIT_MAILING_ADDRESS_SUCCESS_MSG));
+    }
+
 }

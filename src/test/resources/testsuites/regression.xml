@@ -38,6 +38,22 @@
                     <include name="verifyCheckboxDefault"/>
                 </methods>
             </class>
+            <class name="com.agoda.tests.MyBookingsPageTest">
+                <methods>
+                    <include name="VerifyDefaultPageDisplayed"/>
+                    <include name="verifyUpdateInformationProfileIncorrect"/>
+                    <include name="verifyUpdateInformationSuccessfully"/>
+                    <include name="verifyEditInformationSuccessfully"/>
+                </methods>
+            </class>
+            <class name="com.agoda.tests.MyProfilePageTest">
+                <methods>
+                    <include name="verifyEditMailingAddressSuccessfully"/>
+                </methods>
+            </class>
         </classes>
     </test>
+    <listeners>
+        <listener class-name="com.web.coreframework.TestListener"/>
+    </listeners>
 </suite>
