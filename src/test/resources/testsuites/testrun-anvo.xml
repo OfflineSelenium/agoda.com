@@ -26,6 +26,7 @@
                     <include name="verifySearchWithEmptyValueSearchInput"/>
                     <include name="verifySearchWithSpecialCharacters"/>
                     <include name="verifySearchShowResultsFound"/>
+                    <include name="verifySearchShowResultsFound"/>
                 </methods>
             </class>
             <class name="com.agoda.tests.MyBookingsPageTest">
@@ -36,6 +37,17 @@
                     <include name="VerifyDefaultMyProfilePage"/>
                     <include name="verifyButtonSaveDisplay"/>
                     <include name="verifyCheckboxDefault"/>
+                </methods>
+            </class>
+            <class name="com.agoda.tests.MyProfilePageTest">
+                <methods>
+                    <include name="verifyEmailLoginShowCorrect"/>
+                    <include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>
+                    <include name="VerifyDefaultMyReviewPage"/>
+                    <include name="VerifyDefaultMyProfilePage"/>
+                    <include name="verifyButtonSaveDisplay"/>
+                    <include name="verifyCheckboxDefault"/>
+                    <include name="verifyEditInformationSuccessfully"/>
                 </methods>
             </class>
         </classes>
