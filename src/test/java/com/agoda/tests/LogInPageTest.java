@@ -12,29 +12,29 @@ public class LogInPageTest extends BasePage {
     private LogInPage logInPage;
     private MyBookingsPage myBookingsPage;
 
-    private String EMAIL1;
-    private String EMAIL2;
-    private String EMAIL3;
-    private String PASSWORD;
-    private String PASSWORD2;
-    private String ERROR_MSG_WRONG_EMAIL_PASS;
-    private String ERROR_MSG_WRONG_EMAIL;
-    private String ERROR_MSG_WRONG_PASS;
-    private String ERROR_MSG_REQUIRED_EMAIL;
+    private String VALID_EMAIL;
+    private String EMAIL_BLOCKED;
+    private String EMAIL_INVALID;
+    private String VALID_PASSWORD;
+    private String INVALID_PASSWORD;
+    private String WRONG_EMAIL_OR_PASS;
+    private String WRONG_EMAIL;
+    private String WRONG_PASS;
+    private String REQUIRED_EMAIL;
 
     @BeforeClass(alwaysRun = true)
     public void beforeClass() {
         logInPage = webPageFactory.loadLogInPage();
 
-        EMAIL1 = testData.getProperty("email1");
-        EMAIL2 = testData.getProperty("email2");
-        EMAIL3 = testData.getProperty("email3");
-        PASSWORD = testData.getProperty("password");
-        PASSWORD2 = testData.getProperty("password2");
-        ERROR_MSG_WRONG_EMAIL_PASS = testData.getProperty("errorMsg.WrongEmailOrPass");
-        ERROR_MSG_WRONG_EMAIL = testData.getProperty("errorMsg.WrongEmail");
-        ERROR_MSG_WRONG_PASS = testData.getProperty("errorMsg.WrongPass");
-        ERROR_MSG_REQUIRED_EMAIL = testData.getProperty("errorMsg.RequiredEmail");
+        VALID_EMAIL = testData.getProperty("validEmail");
+        EMAIL_BLOCKED = testData.getProperty("emailBlocked");
+        EMAIL_INVALID = testData.getProperty("invalidEmail");
+        VALID_PASSWORD = testData.getProperty("validPassword");
+        INVALID_PASSWORD = testData.getProperty("invalidPassword");
+        WRONG_EMAIL_OR_PASS = testData.getProperty("errorMsg.WrongEmailOrPass");
+        WRONG_EMAIL = testData.getProperty("errorMsg.WrongEmail");
+        WRONG_PASS = testData.getProperty("errorMsg.WrongPass");
+        REQUIRED_EMAIL = testData.getProperty("errorMsg.RequiredEmail");
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -49,8 +49,8 @@ public class LogInPageTest extends BasePage {
      */
     @Test(description = "Verify logging in passed")
     public void verifyLogInPassed() {
-        myBookingsPage = logInPage.enterEmail(EMAIL1)
-                                  .enterPassword(PASSWORD)
+        myBookingsPage = logInPage.enterEmail(VALID_EMAIL)
+                                  .enterPassword(VALID_PASSWORD)
                                   .clickSignInPassed();
 
         // Verify the displayed correct page
@@ -63,50 +63,50 @@ public class LogInPageTest extends BasePage {
 
     @Test(description = "Verify logging in failed")
     public void verifyLogInFailed() {
-        logInPage.enterEmail(EMAIL2)
-                 .enterPassword(PASSWORD)
+        logInPage.enterEmail(VALID_EMAIL)
+                 .enterPassword(INVALID_PASSWORD)
                  .clickSignInFailed();
 
         // Verify the error message displayed
-        Assert.assertEquals(logInPage.shouldSeeTextEmailPasswordError(), ERROR_MSG_WRONG_EMAIL_PASS);
+        Assert.assertTrue(logInPage.shouldSeeTextEmailPasswordError(WRONG_EMAIL_OR_PASS));
     }
 
     @Test(description = "Login-Failure-BlankEmail")
     public void verifyLogInFailedBlankEmail() {
-        logInPage.enterPassword(PASSWORD)
+        logInPage.enterPassword(VALID_PASSWORD)
                  .clickSignInFailed();
 
         // Verify the error message displayed
-        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation(ERROR_MSG_REQUIRED_EMAIL));
+        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation(REQUIRED_EMAIL));
     }
 
     @Test(description = "Login-Failure-InvalidEmail")
     public void verifyLogInFailedWithInvalidEmail() {
-        logInPage.enterEmail(EMAIL3)
-                 .enterPassword(PASSWORD)
+        logInPage.enterEmail(EMAIL_INVALID)
+                 .enterPassword(VALID_PASSWORD)
                  .clickSignInFailed();
 
         //Verify the displayed message
-        Assert.assertEquals(logInPage.shouldSeeTextEmailError(), ERROR_MSG_WRONG_EMAIL);
+        Assert.assertTrue(logInPage.shouldSeeTextEmailError(WRONG_EMAIL));
     }
 
     @Test(description = "Login-Failure-BlankPassword")
     public void verifyLogInFailedWithBlankPassword() {
-        logInPage.enterEmail(EMAIL1)
+        logInPage.enterEmail(VALID_EMAIL)
                  .clickSignInFailed();
 
         //Verify the displayed message
-        Assert.assertEquals(logInPage.shouldSeeTextPasswordError(), ERROR_MSG_WRONG_PASS);
+        Assert.assertTrue(logInPage.shouldSeeTextPasswordError(WRONG_PASS));
     }
 
     @Test(description = "Login-Failure-InvalidPassword")
     public void verifyLogInFailedWithInvalidPassword() {
-        logInPage.enterEmail(EMAIL1)
-                 .enterPassword(PASSWORD2)
+        logInPage.enterEmail(VALID_EMAIL)
+                 .enterPassword(INVALID_PASSWORD)
                  .clickSignInFailed();
 
         //Verify the displayed message
-        Assert.assertEquals(logInPage.shouldSeeTextEmailPasswordError(), ERROR_MSG_WRONG_EMAIL_PASS);
+        Assert.assertTrue(logInPage.shouldSeeTextEmailPasswordError(WRONG_EMAIL_OR_PASS));
     }
 
     @Test(description = "Login-Failure-WithoutEmailPassword")
@@ -114,18 +114,17 @@ public class LogInPageTest extends BasePage {
         logInPage.clickSignInFailed();
 
         //Verify the displayed message
-        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation(ERROR_MSG_REQUIRED_EMAIL));
-        Assert.assertEquals(logInPage.shouldSeeTextPasswordError(), ERROR_MSG_WRONG_PASS);
+        Assert.assertTrue(logInPage.shouldSeeTextEmailValidation(REQUIRED_EMAIL));
+        Assert.assertTrue(logInPage.shouldSeeTextPasswordError(WRONG_PASS));
     }
 
-    @Test(description = "Verify logging in failed")
+    @Test(description = "Login-Failure-WithoutEmailBlock")
     public void verifyLogInFailedWithEmailBlock() {
-        logInPage.enterEmail(EMAIL2)
-                 .enterPassword(PASSWORD)
+        logInPage.enterEmail(EMAIL_BLOCKED)
+                 .enterPassword(VALID_PASSWORD)
                  .clickSignInFailed();
 
         //Verify the displayed message
-        Assert.assertEquals(logInPage.shouldSeeTextEmailPasswordError(), ERROR_MSG_WRONG_EMAIL_PASS);
+        Assert.assertTrue(logInPage.shouldSeeTextEmailPasswordError(WRONG_EMAIL_OR_PASS));
     }
-
 }

@@ -14,24 +14,24 @@ public class MyBookingsPageTest extends BasePage {
     private LogInPage logInPage;
     private ConfirmPasswordSignInPage confirmPasswordSignInPage;
 
-    private String EMAIL1;
-    private String PASSWORD;
+    private String VALID_EMAIL;
+    private String VALID_PASSWORD;
     private String PROFILE_NAME;
     private final String COLOR_BLUE = "#0283df";
 
     @BeforeClass
     public void beforeClass() {
-        EMAIL1 = testData.getProperty("email1");
-        PASSWORD = testData.getProperty("password");
+        VALID_EMAIL = testData.getProperty("validEmail");
+        VALID_PASSWORD = testData.getProperty("validPassword");
         PROFILE_NAME = testData.getProperty("profileName");
 
         logInPage = webPageFactory.loadLogInPage();
-        myBookingsPage = logInPage.logInPassed(EMAIL1, PASSWORD);
+        myBookingsPage = logInPage.logInPassed(VALID_EMAIL, VALID_PASSWORD);
         myBookingsPage.isLoaded();
 
         //Confirm password when enter My Card Details
         confirmPasswordSignInPage = myBookingsPage.clickMyCardDetailsFirstTime();
-        myBookingsPage = confirmPasswordSignInPage.enterPasswordAgian(PASSWORD).clickSignIn();
+        myBookingsPage = confirmPasswordSignInPage.enterPasswordAgian(VALID_PASSWORD).clickSignIn();
     }
 
     @BeforeMethod
@@ -47,7 +47,7 @@ public class MyBookingsPageTest extends BasePage {
     @Test(description = "Verify Show Profile")
     public void verifyEmailLoginShowCorrect() {
         //verify profile name
-        Assert.assertTrue(myBookingsPage.shouldDisplayEmailLogin(EMAIL1));
+        Assert.assertTrue(myBookingsPage.shouldDisplayEmailLogin(VALID_EMAIL));
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(0), "My Bookings");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(1), "My Reviews");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(2), "My Profile");
@@ -60,7 +60,7 @@ public class MyBookingsPageTest extends BasePage {
     @Test(description = "My Bookings-No Criteria Data-Verify Default Page Displayed")
     public void verifyDefaultMyBookingsPageDisplayWithNoCriteriaData() {
         Assert.assertEquals(myBookingsPage.shouldSeeNameColor(), COLOR_BLUE);
-        Assert.assertEquals(myBookingsPage.shouldDisplayEmailLoginText(), EMAIL1);
+        Assert.assertEquals(myBookingsPage.shouldDisplayEmailLoginText(), VALID_EMAIL);
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(0), "My Bookings");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(1), "My Reviews");
         Assert.assertEquals(myBookingsPage.verifyLeftPanelItems(2), "My Profile");
@@ -84,8 +84,8 @@ public class MyBookingsPageTest extends BasePage {
     @Test(description = "Verify Default MyProfile Page")
     public void VerifyDefaultMyProfilePage() {
         myBookingsPage.clickMyProfileMenu();
-        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), PROFILE_NAME + " ");
-        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), EMAIL1);
+        Assert.assertEquals(myBookingsPage.shouldSeeNameInMyProfile(), PROFILE_NAME);
+        Assert.assertEquals(myBookingsPage.shouldSeeEmailInMyProfile(), VALID_EMAIL);
     }
 
     @Test(description = "Verify button Save displayed")

@@ -38,6 +38,11 @@
                     <include name="verifyCheckboxDefault"/>
                 </methods>
             </class>
+            <!--<class name="com.agoda.tests.MyProfilePageTest">-->
+                <!--<methods>-->
+                    <!--<include name="verifyUpdateInformationSuccessfully"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
     </test>
 </suite>

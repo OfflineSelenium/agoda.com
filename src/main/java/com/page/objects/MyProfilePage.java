@@ -68,7 +68,6 @@ public class MyProfilePage extends GeneralPage {
     public String shouldSeeTextCountry() {
         String xpath = "//p[@class='info_right'][4]";
         List<WebElement> elementList = webElementFinder.findElementsByLocatorXPath(xpath);
-        System.out.println(">>>>" + elementList.get(0).getText());
         return elementList.get(0).getText();
     }
 
