@@ -7,50 +7,49 @@
         <classes>
             <class name="com.agoda.tests.LogInPageTest">
                 <methods>
-                    <include name="verifyLogInPassed"/>
-                    <include name="verifyLogInFailed"/>
-                    <include name="verifyLogInFailedBlankEmail"/>
-                    <include name="verifyLogInFailedWithInvalidEmail"/>
-                    <include name="verifyLogInFailedWithBlankPassword"/>
-                    <include name="verifyLogInFailedWithInvalidPassword"/>
-                    <include name="verifyLogInFailedWithoutEmailPassword"/>
-                    <include name="verifyLogInFailedWithEmailBlock"/>
+                    <!--<include name="verifyLogInPassed"/>-->
+                    <!--<include name="verifyLogInFailedWithIncorrectEmailOrPassword"/>-->
+                    <!--<include name="verifyValidationWithInvalidEmail"/>-->
+                    <!--<include name="verifyValidationWithBlankEmail"/>-->
+                    <!--<include name="verifyValidationWithBlankPassword"/>-->
+                    <!--<include name="verifyValidationWithBlankEmailAndPassword"/>-->
+                    <include name="verifyLogInFailedWithLockedEmail"/>
                 </methods>
             </class>
-            <class name="com.agoda.tests.SearchPageTest">
-                <methods>
-                    <include name="verifySearchWithDefaultUI"/>
-                    <include name="verifySearchShowAutoComplete"/>
-                    <include name="verifyAgodaPriceGuaranteeLink"/>
-                    <include name="verifySearchWithNoResults"/>
-                    <include name="verifySearchWithEmptyValueSearchInput"/>
-                    <include name="verifySearchWithSpecialCharacters"/>
-                    <include name="verifySearchShowResultsFound"/>
-                </methods>
-            </class>
-            <class name="com.agoda.tests.MyBookingsPageTest">
-                <methods>
-                    <include name="verifyEmailLoginShowCorrect"/>
-                    <include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>
-                    <include name="VerifyDefaultMyReviewPage"/>
-                    <include name="VerifyDefaultMyProfilePage"/>
-                    <include name="verifyButtonSaveDisplay"/>
-                    <include name="verifyCheckboxDefault"/>
-                </methods>
-            </class>
-            <class name="com.agoda.tests.MyBookingsPageTest">
-                <methods>
-                    <include name="VerifyDefaultPageDisplayed"/>
-                    <include name="verifyUpdateInformationProfileIncorrect"/>
-                    <include name="verifyUpdateInformationSuccessfully"/>
-                    <include name="verifyEditInformationSuccessfully"/>
-                </methods>
-            </class>
-            <class name="com.agoda.tests.MyProfilePageTest">
-                <methods>
-                    <include name="verifyEditMailingAddressSuccessfully"/>
-                </methods>
-            </class>
+            <!--<class name="com.agoda.tests.SearchPageTest">-->
+                <!--<methods>-->
+                    <!--<include name="verifySearchWithDefaultUI"/>-->
+                    <!--<include name="verifySearchShowAutoComplete"/>-->
+                    <!--<include name="verifyAgodaPriceGuaranteeLink"/>-->
+                    <!--<include name="verifySearchWithNoResults"/>-->
+                    <!--<include name="verifySearchWithEmptyValueSearchInput"/>-->
+                    <!--<include name="verifySearchWithSpecialCharacters"/>-->
+                    <!--<include name="verifySearchShowResultsFound"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+            <!--<class name="com.agoda.tests.MyBookingsPageTest">-->
+                <!--<methods>-->
+                    <!--<include name="verifyEmailLoginShowCorrect"/>-->
+                    <!--<include name="verifyDefaultMyBookingsPageDisplayWithNoCriteriaData"/>-->
+                    <!--<include name="VerifyDefaultMyReviewPage"/>-->
+                    <!--<include name="VerifyDefaultMyProfilePage"/>-->
+                    <!--<include name="verifyButtonSaveDisplay"/>-->
+                    <!--<include name="verifyCheckboxDefault"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+            <!--<class name="com.agoda.tests.MyBookingsPageTest">-->
+                <!--<methods>-->
+                    <!--<include name="VerifyDefaultPageDisplayed"/>-->
+                    <!--<include name="verifyUpdateInformationProfileIncorrect"/>-->
+                    <!--<include name="verifyUpdateInformationSuccessfully"/>-->
+                    <!--<include name="verifyEditInformationSuccessfully"/>-->
+                <!--</methods>-->
+            <!--</class>-->
+            <!--<class name="com.agoda.tests.MyProfilePageTest">-->
+                <!--<methods>-->
+                    <!--<include name="verifyEditMailingAddressSuccessfully"/>-->
+                <!--</methods>-->
+            <!--</class>-->
         </classes>
     </test>
     <listeners>

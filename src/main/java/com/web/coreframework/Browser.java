@@ -28,7 +28,7 @@ public class Browser {
      */
     public static WebDriver getInstance(String inBrowserType) {
         browserType = inBrowserType;
-        browserPath = String.format("%s\\resources\\browsers\\", System.getProperty("user.dir"));
+        browserPath = String.format("%s\\resources\\browser-drivers\\", System.getProperty("user.dir"));
         WebDriver driver = buildDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
